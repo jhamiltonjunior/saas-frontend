@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary--color: #444CE6;
+  --secondary--color: #6a70e0;
+  --secondary: #F6F6F9;
+
+  --primary-dark: #3F4C7C;
+  --secondary-dark: #3F4C7C;
+
+  --primary-light: #F6F6F9;
+  --secondary-light: #F6F6F9;
+
+  --font-primary: 'Inter', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+
+  --font-size: 1rem;
+  --font-size-small: 0.8rem;
+  --font-size-large: 1.2rem;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  --border-radius: 0.5rem;
+
+  --text: #3F4C7C;
+  --focus: #E8F9EE;
+  --text-alert: #ffab1b;
+  --text-success: #3cd83f;
+  --text-error: #ff4b2b;
+  --text-warning: #ffab1b;
+  --text-atention: #FFCC41;
+
+  --background: #fff;
+  --background-dark: #F6F6F9;
+
+  --focu-button: #3cd83f;
+
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+} */
