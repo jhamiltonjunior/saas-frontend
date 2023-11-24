@@ -1,12 +1,32 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { register } from './utils/registerAndLogin.js';
+import Message from './components/message';
 import './style.css';
 
 const App = () => {
+  const [mostrarMensagem, setMostrarMensagem] = useState([]);
+  let i = 0
+  const handleRegister = async () => {
+    const returnedMessage = await register();
+    i=1
+    const newMessage = { text: returnedMessage+i, id: Date.now() };
+    setMostrarMensagem((prevMessages) => [
+      ...prevMessages,
+      newMessage
+    ])
+    // setMessage(returnedMessage)
+
+    setTimeout(() => {
+      setMostrarMensagem((prevMessages) =>
+        prevMessages.filter((msg) => msg.id !== newMessage.id)
+      )
+    }, 8000);
+  };
 
   useEffect(() => {
+    // setMostrarMensagem(true);
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container');
@@ -18,9 +38,12 @@ const App = () => {
     signInButton.addEventListener('click', () => {
       container.classList.remove("right-panel-active");
     });
+
+    
   }, []);
 
   return (
+    <>
     <div className="container" id="container">
       <div className="form-container sign-up-container">
         <form id="register">
@@ -34,7 +57,7 @@ const App = () => {
           <input type="text" placeholder="Name" name="name" required />
           <input type="email" placeholder="Email" name="email" required />
           <input type="password" placeholder="Password" name="password" required />
-          <button className="mt-4" onClick={register}>Registrar</button>
+          <button className="mt-4" onClick={handleRegister}>Registrar</button>
         </form>
       </div>
       <div className="form-container sign-in-container">
@@ -67,6 +90,12 @@ const App = () => {
         </div>
       </div>
     </div>
+    <div className="message-container">
+      {mostrarMensagem.map((message) => (
+        <Message key={message.id} message={message.text} />
+      ))}
+    </div>
+    </>
   );
 }
 
