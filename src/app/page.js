@@ -3,6 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import { register } from './utils/register.js';
 import Message from './components/message';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import {  } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle, faFacebook, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
+
+// fab fa-facebook-f"></i></a>
+//             <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+//             <a href="#" className="social"><i className="fab fa-linkedin-in"
+
 import './style.css';
 
 const App = () => {
@@ -30,7 +38,7 @@ const App = () => {
     }));
   };
 
-  const removeMessageImmediately = (id, setMostrarMensagem) => {
+  const removeMessageImmediately = (id) => {
     clearTimeout(timeouts[id]);
     setMostrarMensagem((prevMessages) =>
       prevMessages.filter((message) => message.id !== id)
@@ -59,49 +67,59 @@ const App = () => {
     <div className="container" id="container">
       <div className="form-container sign-up-container">
         <form id="register">
-          <h1>Create Account</h1>
+          <h1>Cadastrar</h1>
           <div className="social-container">
-            <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-            <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-            <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+            <a href="#" className="social primary-color">
+              <FontAwesomeIcon icon={faFacebook} />
+            </a>
+            
+            <a href="#" className="social">
+              <FontAwesomeIcon icon={faGoogle} />
+            </a>
           </div>
-          <span>or use your email for registration</span>
-          <input type="text" placeholder="Name" name="name" required />
+          <span>Ou use seu email para registrar-se</span>
+          <input type="text" placeholder="Nome" name="name" required />
           <input type="email" placeholder="Email" name="email" required />
-          <input type="password" placeholder="Password" name="password" required />
+          <input type="password" placeholder="Senha" name="password" required />
+          <input type="confirme_password" placeholder="Confirmar Senha" name="confirme_password" required />
           <button className="mt-4" onClick={handleRegister}>Registrar</button>
         </form>
       </div>
       <div className="form-container sign-in-container">
         <form action="#">
-          <h1>Sign in</h1>
+          <h1>Entrar</h1>
           <div className="social-container">
-            <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-            <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-            <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+          <a href="#" className="social primary-color">
+              <FontAwesomeIcon icon={faFacebook} />
+            </a>
+            
+            <a href="#" className="social">
+              <FontAwesomeIcon icon={faGoogle} />
+            </a>
           </div>
-          <span>or use your account</span>
+          <span>Faça Login</span>
           <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <a href="#">Forgot your password?</a>
-          <button>Sign In</button>
+          <input type="password" placeholder="Senha" />
+          <a href="#">Esqueceu a senha?</a>
+          <button>Login</button>
         </form>
       </div>
       <div className="overlay-container">
         <div className="overlay">
           <div className="overlay-panel overlay-left">
             <h1>Olá, Amigo!</h1>
-            <p>Enter your personal details and start journey with us</p>
-            <button className="ghost" id="signIn">Sign In</button>
+            <p>Insira seus dados pessoais e comece sua jornada conosco</p>
+            <button className="ghost" id="signIn">Entrar</button>
           </div>
           <div className="overlay-panel overlay-right">
-            <h1>Welcome Back!</h1>
-            <p>To keep connected with us please login with your personal info</p>
-            <button className="ghost" id="signUp">Sign Up</button>
+            <h1>Bem vindo(a) de volta!</h1>
+            <p>Para se manter conectado, faça login com suas informações pessoais</p>
+            <button className="ghost" id="signUp">Registre-se</button>
           </div>
         </div>
       </div>
     </div>
+
     <div className="message-container">
       {mostrarMensagem.map((message) => (
         <Message

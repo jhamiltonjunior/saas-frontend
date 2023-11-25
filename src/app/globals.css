@@ -53,6 +53,10 @@
   }
 }
 
+.primary-color {
+  color: var(--primary--color);
+}
+
 /* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

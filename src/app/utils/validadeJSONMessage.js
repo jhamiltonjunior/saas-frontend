@@ -26,6 +26,8 @@ export function validateMessage (message) {
       return 'Método de requisição inválido'
     case 'Failed to get data':
       return 'Falha ao obter dados'
+    case 'Failed to generate token':
+      return 'Falha ao gerar acesso'
     default:
       return message
   }

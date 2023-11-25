@@ -34,6 +34,8 @@ export async function register() {
     bgColor = '3cd83f'
   }
 
+  console.log(json)
+
   const message = validateMessage(json.message);
 
   return [message, bgColor]
