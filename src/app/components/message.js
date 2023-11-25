@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
-const Message = ({ message }) => {
-  // const [mostrarMensagem, setMostrarMensagem] = useState(false);
 
-  // useEffect(() => {
-  //   // Exibe a mensagem por 3 segundos
-  //   setMostrarMensagem(true);
-  //   const timer = setTimeout(() => {
-  //     setMostrarMensagem(false);
-  //   }, 3000);
 
-  //   return () => clearTimeout(timer);
-  // }, [mensagem]);
+const Message = ({ message, backgroundColor, removeMessage, id }) => {
+  const [isClosing, setIsClosing] = useState(false);
 
-  return <div className="mensagem">{message}</div>;
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      removeMessage(id);
+    }, 500);
+  };
+
+  return <div 
+  className={`mensagem ${isClosing ? 'closing' : ''}`}
+  style={{ backgroundColor: `#${backgroundColor}` }}
+  onClick={handleClose}
+  >
+    {message}
+    <div className="close">
+      <FontAwesomeIcon icon={faXmark} />
+    </div>
+  </div>;
 };
 
 export default Message;

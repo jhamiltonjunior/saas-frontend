@@ -1,28 +1,40 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { register } from './utils/registerAndLogin.js';
+import { register } from './utils/register.js';
 import Message from './components/message';
 import './style.css';
 
 const App = () => {
   const [mostrarMensagem, setMostrarMensagem] = useState([]);
-  let i = 0
+  const [timeouts, setTimeouts] = useState({});
+  let timeoutId;
+
   const handleRegister = async () => {
-    const returnedMessage = await register();
-    i=1
-    const newMessage = { text: returnedMessage+i, id: Date.now() };
+    const [returnedMessage, backgroudColor] = await register();
+    const newMessage = { text: returnedMessage, id: Date.now(), bg: backgroudColor };
     setMostrarMensagem((prevMessages) => [
       ...prevMessages,
       newMessage
     ])
-    // setMessage(returnedMessage)
 
-    setTimeout(() => {
+    timeoutId = setTimeout(() => {
       setMostrarMensagem((prevMessages) =>
         prevMessages.filter((msg) => msg.id !== newMessage.id)
       )
-    }, 8000);
+    }, 5000);
+
+    setTimeouts((prevTimeouts) => ({
+      ...prevTimeouts,
+      [newMessage.id]: timeoutId,
+    }));
+  };
+
+  const removeMessageImmediately = (id, setMostrarMensagem) => {
+    clearTimeout(timeouts[id]);
+    setMostrarMensagem((prevMessages) =>
+      prevMessages.filter((message) => message.id !== id)
+    );
   };
 
   useEffect(() => {
@@ -92,7 +104,13 @@ const App = () => {
     </div>
     <div className="message-container">
       {mostrarMensagem.map((message) => (
-        <Message key={message.id} message={message.text} />
+        <Message
+        key={message.id}
+        message={message.text}
+        removeMessage={removeMessageImmediately} 
+        id={message.id} 
+        backgroundColor={message.bg} 
+        />
       ))}
     </div>
     </>

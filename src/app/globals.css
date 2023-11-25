@@ -37,7 +37,8 @@
   --background: #fff;
   --background-dark: #F6F6F9;
 
-  --focu-button: #3cd83f;
+  --focu-button: #3cd83f; /* #3FAA76; */
+  --button: #3F4C7C;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

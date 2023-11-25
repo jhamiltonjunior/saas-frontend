@@ -1,7 +1,6 @@
+import { validateMessage } from "./validadeJSONMessage";
+
 const URLAPI = 'http://localhost:3001';
-import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
-import {setMessage} from '../utils/setMessage';
 
 export async function register() {
   const registerForm = document.getElementById('register');
@@ -26,15 +25,16 @@ export async function register() {
     body,
   })
   const json = await response.json();
-  
-  // setMostrarMensagem(false);
-  // setMostrarMensagem(true);
-  // const timer = setTimeout(() => {
-  //   setMostrarMensagem(false);
-  // }, 3000);
-  if (json.message === 'name is invalid') {
-    return 'O nome é inválido, tente algo como "João Silva"';
+  let bgColor = ''
+  if (json.status === 'error') {
+    bgColor = 'ff4b2b'
+  } else if (json.status === 'success') {
+    bgColor = '3FAA76'
+  } else {
+    bgColor = '3cd83f'
   }
 
-  return json.message
+  const message = validateMessage(json.message);
+
+  return [message, bgColor]
 }

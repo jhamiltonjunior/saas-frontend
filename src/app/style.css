@@ -225,7 +225,7 @@ input {
 	height: 40px;
 	width: 40px;
 }
-
+/* 
 footer {
     background-color: #222;
     color: #fff;
@@ -249,16 +249,44 @@ footer i {
 footer a {
     color: #3c97bf;
     text-decoration: none;
-}
+} */
 
-/* Mensagem.css */
 .mensagem {
-  
-  padding: 10px;
-  background-color: #4caf50;
+  padding: 1.5rem;
   color: #fff;
+	max-width: 300px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1rem;
+	position: relative;
+	animation: slideIn 0.3s ease forwards, slideOut 0.3s ease 4.7s forwards;
+}
+
+@keyframes slideIn {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideOut {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+
+.close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0.5rem;
+	cursor: pointer;
 }
 
 .message-container {
@@ -267,4 +295,9 @@ footer a {
 	position: fixed;
   bottom: 10px;
   right: 10px;
+}
+
+.mensagem.closing {
+  transition: opacity 0.3s ease;
+  opacity: 0;
 }
