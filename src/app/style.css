@@ -70,6 +70,12 @@ button.ghost {
 	border-color: #FFFFFF;
 }
 
+button.ghost-mobile {
+	background-color: transparent;
+	border-color: #000;
+	color: #000;
+}
+
 form {
 	background-color: #FFFFFF;
 	display: flex;
@@ -300,4 +306,29 @@ footer a {
 .mensagem.closing {
   transition: opacity 0.3s ease;
   opacity: 0;
+}
+
+@media (max-width: 766px) {
+	.container-login_register {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	form {
+		width: 200%;
+	}
+
+	.overlay-container{
+		display: none;
+	}
+
+	.container.right-panel-active .sign-up-container {
+		transform: translateX(0);
+	}
+
+	/* .sign-up-container {
+		display: none;
+	} */
 }
