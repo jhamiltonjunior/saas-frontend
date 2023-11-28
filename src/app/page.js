@@ -90,7 +90,7 @@ const App = () => {
           <input type="password" placeholder="Senha" name="password" required />
           <input type="confirme_password" placeholder="Confirmar Senha" name="confirme_password" required />
           <button className="mt-4" onClick={handleRegister}>Registrar</button>
-          <button className="ghost-mobile signIn" id="signIn">Entrar</button>
+          <p className="ghost-mobile signIn" id="signIn">Fazer Login</p>
 
         </form>
       </div>
@@ -112,7 +112,9 @@ const App = () => {
           <input type="password" placeholder="Senha" />
           <a href="#">Esqueceu a senha?</a>
           <button>Login</button>
-          <button className="ghost-mobile signUp" id="signUp">Registrar-se</button>
+          <p className="ghost ghost-mobile signUp" id="signUp">
+              Registrar-se
+          </p>
 
         </form>
       </div>
@@ -121,14 +123,14 @@ const App = () => {
         <div className="overlay">
           <div className="overlay-panel overlay-left">
             <h1>Olá, Amigo!</h1>
-            <p>Insira seus dados pessoais e comece sua jornada conosco</p>
+            <p>Insira seus dados pessoais e comece sua jornada conosco!</p>
             <button className="ghost signIn" id="signIn">Entrar</button>
           </div>
 
           <div className="overlay-panel overlay-right">
             <h1>Bem vindo(a) de volta!</h1>
             <p>Para se manter conectado, faça login com suas informações pessoais</p>
-            <button className="ghost signUp" id="signUp">Registre-se</button>
+            <button className="ghost signUp" id="signUp">Registrar-se</button>
           </div>
         </div>
       </div>

@@ -70,11 +70,7 @@ button.ghost {
 	border-color: #FFFFFF;
 }
 
-button.ghost-mobile {
-	background-color: transparent;
-	border-color: #000;
-	color: #000;
-}
+
 
 form {
 	background-color: #FFFFFF;
@@ -257,6 +253,20 @@ footer a {
     text-decoration: none;
 } */
 
+.ghost-mobile {
+	background-color: transparent;
+	border-color: #000;
+	color: #000;
+	display: none;
+	cursor: pointer;
+}
+
+.container-login_register {
+	/* max-height: 600px; */
+	min-height: 520px;
+
+}
+
 .mensagem {
   padding: 1.5rem;
   color: #fff;
@@ -299,6 +309,7 @@ footer a {
   display: flex;
   flex-direction: column-reverse;
 	position: fixed;
+	z-index:9999;
   bottom: 10px;
   right: 10px;
 }
@@ -325,7 +336,11 @@ footer a {
 	}
 
 	.container.right-panel-active .sign-up-container {
-		transform: translateX(0);
+		transform: translateX(0%);
+	}
+
+	.ghost-mobile {
+		display: block;
 	}
 
 	/* .sign-up-container {
