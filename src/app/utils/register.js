@@ -13,6 +13,11 @@ export async function register() {
   const name = form.get('name');
   const email = form.get('email');
   const password = form.get('password');
+  const confirmePassword = form.get('confirme_password');
+
+  if (password !== confirmePassword) {
+    return ['As senhas não são iguais', 'ff4b2b']
+  }
 
   const body = JSON.stringify({
     name,

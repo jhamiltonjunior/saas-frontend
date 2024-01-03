@@ -4,12 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { register } from './utils/register.js';
 import Message from './components/message';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import {  } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle, faFacebook, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
-
-// fab fa-facebook-f"></i></a>
-//             <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-//             <a href="#" className="social"><i className="fab fa-linkedin-in"
 
 import './style.css';
 
@@ -88,7 +83,7 @@ const App = () => {
           <input type="text" placeholder="Nome" name="name" required />
           <input type="email" placeholder="Email" name="email" required />
           <input type="password" placeholder="Senha" name="password" required />
-          <input type="confirme_password" placeholder="Confirmar Senha" name="confirme_password" required />
+          <input type="password" placeholder="Confirmar Senha" name="confirme_password" required />
           <button className="mt-4" onClick={handleRegister}>Registrar</button>
           <p className="ghost-mobile signIn" id="signIn">Fazer Login</p>
 
