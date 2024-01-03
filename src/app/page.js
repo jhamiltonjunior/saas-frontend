@@ -14,7 +14,7 @@ const App = () => {
   let timeoutId;
 
   const handleRegister = async () => {
-    const [returnedMessage, backgroudColor] = await register();
+    const [returnedMessage, backgroudColor, registed] = await register();
     const newMessage = { text: returnedMessage, id: Date.now(), bg: backgroudColor };
     setMostrarMensagem((prevMessages) => [
       ...prevMessages,
@@ -31,6 +31,16 @@ const App = () => {
       ...prevTimeouts,
       [newMessage.id]: timeoutId,
     }));
+
+    if (registed) {
+      setMostrarMensagem((prevMessages) => [
+        ...prevMessages,
+        { text: 'Redirecionando, Aguarde!', id: Date.now(), bg: backgroudColor }
+      ])
+      setTimeout(() => {
+        window.location.href = 'http://localhost:3000/dashboard';
+      }, 3000);
+    }
   };
 
   const removeMessageImmediately = (id) => {

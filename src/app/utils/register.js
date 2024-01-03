@@ -43,5 +43,9 @@ export async function register() {
 
   const message = validateMessage(json.message);
 
-  return [message, bgColor]
+  if (json.status === 'success') {
+    return [message, bgColor, true]
+  }
+
+  return [message, bgColor, false]
 }

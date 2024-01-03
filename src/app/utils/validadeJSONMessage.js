@@ -13,7 +13,7 @@ export function validateMessage (message) {
     case 'email is invalid':
       return 'O email é inválido, tente algo como exemple@exemple.com'
     case 'password is invalid':
-      return 'A senha é inválida, tente algo como "123456"'
+      return 'A senha é inválida, tente novamente'
     case 'email already exists':
       return 'O email já existe, tente outro email ou faça login'
     case 'email not found':
