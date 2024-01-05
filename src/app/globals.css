@@ -5,6 +5,7 @@
 :root {
   --primary--color: #444CE6;
   --secondary--color: #6a70e0;
+  --tertiary--color: #F04E23;
   --secondary: #F6F6F9;
 
   --primary-dark: #3F4C7C;
@@ -40,9 +41,20 @@
   --focu-button: #3cd83f; /* #3FAA76; */
   --button: #3F4C7C;
 
+  --box-shadow-primary: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --gradient: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  )
+    rgb(var(--background-start-rgb));
+
+  --green: #3FAA76;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,6 +67,18 @@
 
 .primary-color {
   color: var(--primary--color);
+}
+
+.green-color {
+  color: var(--green);
+}
+
+.tertiary-color{
+  color: var(--tertiary--color);
+}
+
+.transition-card {
+  transition: transform 0.5s ease;
 }
 
 /* body {
