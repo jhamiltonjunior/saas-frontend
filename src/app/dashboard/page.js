@@ -17,6 +17,7 @@ import { faMoneyCheckDollar, faGraduationCap, faHeartCircleCheck } from '@fortaw
 {/* <FontAwesomeIcon icon={faHeartCircleCheck} /> */}
 import { LineChart } from '../components/charts/line';
 import { BarChart } from '../components/charts/bar';
+import Feedback from '../components/feedback/feedback';
 
 let receitasColor = 'rgba(0,128,0'; // Verde
 let despesasColor = 'rgba(255,0,0'; // Vermelho
@@ -30,8 +31,8 @@ export default function Home() {
     datasets: [
       {
         label: 'My First dataset',
-        backgroundColor: 'rgba(75,192,192,0.6)',
-        borderColor: 'rgba(75,192,192,1)',
+        backgroundColor: 'rgba(68, 76, 230,0.6)',
+        borderColor: 'rgba(68, 76, 230,1)',
         data: [5, 5, 2, 4, 7, 3, 2]
       },
       {
@@ -120,11 +121,11 @@ export default function Home() {
       <section className="container-medium_card flex justify-between">
         <Card 
           title="Ultimos Feedbacks" 
-          className="medium_card transition-card dashboard-card" 
+          className="medium_card feedback_card transition-card dashboard-card" 
           chart="cuador" 
           icon={faGoogle} 
           id="div1" 
-          content="This is Card 1"
+          content={<Feedback />}
           />
 
         <ChartCard 

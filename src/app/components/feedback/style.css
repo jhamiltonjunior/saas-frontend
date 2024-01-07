@@ -1,0 +1,60 @@
+.feedback_card {
+  max-height: calc((20px + var(--padding-medium) + 45px) * 6); /* 1.5rem é assumido como a altura de uma linha, ajuste conforme necessário */
+  overflow-y: auto;
+}
+
+.feedback_card::-webkit-scrollbar {
+  width: var(--small);
+}
+
+/* Track (o fundo da barra de rolagem) */
+.feedback_card::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Cor de fundo da barra de rolagem */
+}
+
+/* Handle (a parte móvel da barra de rolagem) */
+.feedback_card::-webkit-scrollbar-thumb {
+  border-radius: var(--border-radius);
+  background: var(--secondary--color); /* Cor da parte móvel da barra de rolagem */
+}
+
+/* Handle on hover */
+.feedback_card::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary--color-hover); /* Cor da parte móvel da barra de rolagem */
+  /* background: #555; Cor da parte móvel da barra de rolagem quando o mouse está sobre ela */
+}
+
+.inline_feedback {
+  /* display: inline-block; */
+  /* margin-left: 10px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  padding: var(--padding-medium) var(--padding-medium);
+  background-color: #fff;
+  box-shadow: var(--box-shadow-primary);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+
+.inline_feedback p {
+  margin: 0;
+  padding: 0;
+  font-size: var(--font-size);
+  font-weight: 500;
+  color: var(--text-black);
+}
+
+.inline_feedback p,
+.inline_feedback h1 {
+  margin-bottom: var(--small);
+}
+
+.inline_feedback div:nth-child(2) {
+  text-align: right;
+}

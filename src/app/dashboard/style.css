@@ -435,6 +435,7 @@ DASHBOARD
   margin: 10px;
   flex: 2 0 20%; 
   max-height: 200px;
+	justify-content: end;
 }
 
 .minimal-card > h2 {

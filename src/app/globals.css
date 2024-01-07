@@ -5,6 +5,7 @@
 :root {
   --primary--color: #444CE6;
   --secondary--color: #6a70e0;
+  --secondary--color-hover: #454cda;
   --tertiary--color: #F04E23;
   --secondary: #F6F6F9;
 
@@ -28,6 +29,7 @@
   --border-radius: 0.5rem;
 
   --text: #3F4C7C;
+  --text-black: #363434;
   --focus: #E8F9EE;
   --text-alert: #ffab1b;
   --text-success: #3cd83f;
@@ -47,6 +49,9 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
+  --padding-small: 0.5rem;
+  --padding-medium: 1rem;
+
   --gradient: linear-gradient(
     to bottom,
     transparent,
@@ -55,6 +60,8 @@
     rgb(var(--background-start-rgb));
 
   --green: #3FAA76;
+
+  --small: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
