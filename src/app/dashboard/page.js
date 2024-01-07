@@ -133,7 +133,7 @@ export default function Home() {
  
       <section className="container-medium_card container-large_card flex justify-between">
         <ChartCard
-          title="Medium cards"
+          title="Financeiro"
           component={<LineChart data={financial} />}
           className="medium_card transition-card dashboard-card"
           icon={faGoogle} id="div1"
