@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useRef } from 'react';
 import Card from '../components/dashboard/dashboardCard';
-import MinimalCard from '../components/dashboard/minimalDashboardCard';
+import ChartCard from '../hook/ChartDashboardCard';
 import '../globals.css'
 import './style.css'
 import { dragAndDrop } from '../utils/dragginDrop';
@@ -15,10 +15,60 @@ import { faMoneyCheckDollar, faGraduationCap, faHeartCircleCheck } from '@fortaw
 {/* <FontAwesomeIcon icon={faCircleCheck} /> */}
 {/* <FontAwesomeIcon icon={faPersonCircleCheck} /> */}
 {/* <FontAwesomeIcon icon={faHeartCircleCheck} /> */}
+import { LineChart } from '../components/charts/line';
+import { BarChart } from '../components/charts/bar';
+
+let receitasColor = 'rgba(0,128,0'; // Verde
+let despesasColor = 'rgba(255,0,0'; // Vermelho
+let lucroColor = 'rgba(68, 76, 230';
 
 export default function Home() {
   const parentRef = useRef();
   let draggedElem = null;
+  const data = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        label: 'My First dataset',
+        backgroundColor: 'rgba(75,192,192,0.6)',
+        borderColor: 'rgba(75,192,192,1)',
+        data: [5, 5, 2, 4, 7, 3, 2]
+      },
+      {
+        label: 'My First dataset',
+        backgroundColor: 'rgba(255,50,50,0.6)',
+        borderColor: 'rgba(255,50,50,1)',
+        data: [2, 6, 2, 7, 6, 7, 3]
+      }
+    ]
+  };
+
+  const financial = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        label: 'Receitas',
+        backgroundColor: receitasColor + ', 0.6)',
+        borderColor: receitasColor + ', 0.4)',
+        data: [5, 6, 3, 7, 7, 3, 8],
+        tension: 0.09
+      },
+      {
+        label: 'Despesas',
+        backgroundColor: despesasColor + ', 0)',
+        borderColor: despesasColor + ', 0.8)',
+        data: [2, 2, 1, 4, 2, 1, 3],
+        tension: 0.09
+      },
+      {
+        label: 'Lucro',
+        backgroundColor: lucroColor + ', 0.6)',
+        borderColor: lucroColor + ',0.8)',
+        data: [3, 4, 2, 3, 5, 2, 5],
+        tension: 0.09
+      }
+    ]
+  };
 
   useEffect(() => {
     // dragAndDrop(parentRef);
@@ -68,13 +118,31 @@ export default function Home() {
       </section>
 
       <section className="container-medium_card flex justify-between">
-        <Card title="Medium cards" className="medium_card transition-card" icon={faGoogle} id="div1" content="This is Card 1" />
-        <Card title="Medium cards" className="medium_card transition-card" icon={faGoogle} id="div1" content="This is Card 1" />
+        <Card 
+          title="Ultimos Feedbacks" 
+          className="medium_card transition-card dashboard-card" 
+          chart="cuador" 
+          icon={faGoogle} 
+          id="div1" 
+          content="This is Card 1"
+          />
+
+        <ChartCard 
+          title="Taxa de Churn" component={<BarChart data={data} />} className="medium_card dashboard-card transition-card" icon={faGoogle} id="div1" content="" />
       </section>
  
-      <section className="container-medium_card flex justify-between">
-        <Card title="Medium cards" className="medium_card transition-card" icon={faGoogle} id="div1" content="This is Card 1" />
+      <section className="container-medium_card container-large_card flex justify-between">
+        <ChartCard
+          title="Medium cards"
+          component={<LineChart data={financial} />}
+          className="medium_card transition-card dashboard-card"
+          icon={faGoogle} id="div1"
+          content="This is Card 1" />
       </section>
     </main>
   );
+}
+
+function labels () {
+  
 }
