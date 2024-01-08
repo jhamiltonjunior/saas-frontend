@@ -1,6 +1,7 @@
 .feedback_card {
-  max-height: calc((20px + var(--padding-medium) + 45px) * 6); /* 1.5rem é assumido como a altura de uma linha, ajuste conforme necessário */
+  max-height: calc((21.7px + var(--padding-medium) + 45px) * 6); /* 1.5rem é assumido como a altura de uma linha, ajuste conforme necessário */
   overflow-y: auto;
+  position: relative;
 }
 
 .feedback_card::-webkit-scrollbar {

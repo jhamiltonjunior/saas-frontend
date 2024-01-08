@@ -33,13 +33,13 @@ export default function Home() {
         label: 'My First dataset',
         backgroundColor: 'rgba(68, 76, 230,0.6)',
         borderColor: 'rgba(68, 76, 230,1)',
-        data: [5, 5, 2, 4, 7, 3, 2]
+        data: [5, 8 , 6, 9, 7, 10, 5]
       },
       {
         label: 'My First dataset',
         backgroundColor: 'rgba(255,50,50,0.6)',
         borderColor: 'rgba(255,50,50,1)',
-        data: [2, 6, 2, 7, 6, 7, 3]
+        data: [2, 6, 2, 7, 6, 3, 3]
       }
     ]
   };

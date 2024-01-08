@@ -424,6 +424,13 @@ DASHBOARD
 	background-color: #fff;
 	border: none;
 	box-shadow: var(--box-shadow-primary);
+  position: relative;
+}
+
+.dashboard-card h2 {
+	/* font-size: 1rem; */
+	margin-bottom: 1.5rem;
+
 }
 
 .minimal-card {

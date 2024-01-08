@@ -1,4 +1,5 @@
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, BarElement } from 'chart.js';
+import ChangePeriod from '../components/reload/changePeriod';
 // import { Line, Bar } from 'react-chartjs-2';
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement)
@@ -6,6 +7,8 @@ Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement
 function CardChart({ title, className, id, content, component }) {
   return (
     <div className={className} id={id}>
+      {<ChangePeriod />}
+
       <h2>{title}</h2>
       <p>{content}</p>
       <div style={{ width: '100%', height: '400px' }}>

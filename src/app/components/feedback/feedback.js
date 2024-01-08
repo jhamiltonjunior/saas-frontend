@@ -15,7 +15,7 @@ function Feedback() {
 
   return (
     <div className="w-full">
-      <div className="inline_feedback w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between">
         <div>
           <h1>Maria Silva </h1>
           <small>14:30 - 2023/05/10 </small>
@@ -27,7 +27,7 @@ function Feedback() {
         </div>
       </div>
 
-      <div className="inline_feedback w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between">
         <div>
           <h1>João Pereira </h1>
           <small>09:45 - 2023/07/22</small>
@@ -39,7 +39,7 @@ function Feedback() {
         </div>
       </div>
 
-      <div className="inline_feedback w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between">
         <div>
           <h1>Ana Santos</h1>
           <small>17:15 - 2023/09/18</small>
@@ -51,7 +51,7 @@ function Feedback() {
         </div>
       </div>
 
-      <div className="inline_feedback w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between">
         <div>
           <h1>Ricardo Oliveira</h1>
           <small>11:20 - 2023/11/05</small>
@@ -63,7 +63,7 @@ function Feedback() {
         </div>
       </div>
 
-      <div className="inline_feedback w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between">
         <div>
           <h1>Juliana Lima</h1>
           <small>20:05 - 2024/01/12</small>
@@ -75,7 +75,7 @@ function Feedback() {
         </div>
       </div>
 
-      <div className="inline_feedback w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between">
         <div>
           <h1>Fernando Costa</h1>
           <small>15:40 - 2023/08/08</small>
@@ -87,7 +87,7 @@ function Feedback() {
         </div>
       </div>
 
-      <div className="inline_feedback w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between">
         <div>
           <h1>Carla Mendes</h1>
           <small>13:55 - 2023/06/30</small>
@@ -99,7 +99,7 @@ function Feedback() {
         </div>
       </div>
 
-      <div className="inline_feedback w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between">
         <div>
           <h1>Gabriel Santos</h1>
           <small>17:01 07/01/2024</small>
