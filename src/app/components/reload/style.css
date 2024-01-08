@@ -7,7 +7,7 @@
   border-radius: 20px;
   border: 1px solid #ccc;
   color: #000;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: all 0.3s ease-in-out;
   position: absolute;
   top: 0;
@@ -36,3 +36,12 @@
   color: var(--primary-light);
 }
 
+.changePeriod button.selected {
+  background-color: var(--secondary--color);
+  color: var(--primary-light);
+}
+
+.changePeriod button.selected:hover {
+  background-color: var(--secondary--color-hover);
+  cursor: default;
+}

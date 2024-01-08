@@ -10,10 +10,10 @@ function ChangePeriod() {
 
   return (
     <div className="changePeriod">
-      <button>dia</button>
-      <button>semana</button>
-      <button>mês</button>
-      <button>ano</button>
+      <button className="rounded-l-full">dia</button>
+      <button className="rounded-none">semana</button>
+      <button className="rounded-none">mês</button>
+      <button className="rounded-none rounded-r-full selected">ano</button>
     </div>
   )
 }

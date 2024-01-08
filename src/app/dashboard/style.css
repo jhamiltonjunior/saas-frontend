@@ -474,7 +474,12 @@ DASHBOARD
 
 }
 
-
+@media screen and (max-width: 1536px) {
+  .card-container {
+		padding-left: 3rem; 
+		padding-right: 3rem; 
+  }
+}
 
 @media screen and (max-width: 1024px) {
   .card-container {
