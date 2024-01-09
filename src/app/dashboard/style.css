@@ -377,6 +377,7 @@ DASHBOARD
 
 
 .card-container {
+	/* max-width: var(--max-larger-width); */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

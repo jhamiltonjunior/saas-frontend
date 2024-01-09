@@ -1,0 +1,20 @@
+.simple-menu {
+  position: fixed;
+  top: var(--height-header);
+  right: 4rem;
+  margin-top: var(--small);
+  z-index: 100;
+  background-color: #fff;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  max-height: 600px;
+
+  display: block;
+  transform: translateY(-120%); /* Inicia o menu fora da tela */
+  transition: transform 0.3s ease-out; /* Adiciona uma transição suave */
+}
+
+.simple-menu--open {
+  transform: translateX(0); /* Move o menu para a posição original quando aberto */
+}

@@ -5,4 +5,17 @@ const nextConfig = {}
 //   console.log('info  - lanUrl:', `http://${require('address').ip()}:3000`)
 // }
 
+// module.exports = {
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: 'https',
+//         hostname: 'images.unsplash.com',
+//         //port: '',
+//         //pathname: '/account123/**',
+//       },
+//     ],
+//   },
+// }
+
 module.exports = nextConfig

@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { useEffect, useRef } from 'react';
 import Card from '../components/dashboard/dashboardCard';
 import ChartCard from '../hook/ChartDashboardCard';
+import Header from '../components/header/header'
+import Nofity from '../components/modal/notify'
 import '../globals.css'
 import './style.css'
 import { dragAndDrop } from '../utils/dragginDrop';
@@ -24,8 +26,19 @@ let despesasColor = 'rgba(255,0,0'; // Vermelho
 let lucroColor = 'rgba(68, 76, 230';
 
 export default function Home() {
-  const parentRef = useRef();
-  let draggedElem = null;
+  const menuRef = useRef(null);
+
+  const menuToggle = () => {
+    const menu = menuRef.current;
+    if (menu.classList.contains('simple-menu--open')) {
+      menu.classList.remove('simple-menu--open');
+    } else {
+      console.log('menuToggle');
+      menu.classList.add('simple-menu--open');
+    }
+  };
+
+
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
@@ -71,76 +84,78 @@ export default function Home() {
     ]
   };
 
-  useEffect(() => {
-    // dragAndDrop(parentRef);
-
-  }, []);
-
   return (
-    <main  className="min-h-screen w-screen justify-between p-24 card-container">
-      <section className="container-minimal_card flex justify-between">
-        <Card
-          title="Recebimentos do dia"
-          className="minimal-card dashboard-card transition-card receivement-card" 
-          icon={{icon: faMoneyCheckDollar, className: 'green-color'}} 
-          id="div1" 
-          content="R$ 2.075,00" />
+    <>
+      {<Header onToggle={menuToggle} />}
+      {<Nofity menuRef={menuRef} />}
 
-        <Card
-          title="Total de Alunos" 
-          className="minimal-card transition-card dashboard-card student-card" 
-          icon={{
-            icon: faGraduationCap,
-            className: 'primary-color '
-          }} 
-          id="div1" 
-          content="3.529" />
+    
+      <main  className="min-h-screen w-screen justify-between p-24 card-container">
+        <section className="container-minimal_card flex justify-between">
+          <Card
+            title="Recebimentos do dia"
+            className="minimal-card dashboard-card transition-card receivement-card" 
+            icon={{icon: faMoneyCheckDollar, className: 'green-color'}} 
+            id="div1" 
+            content="R$ 2.075,00" />
 
-        <Card
-          title="Treinos do dia" 
-          className="minimal-card transition-card dashboard-card training-card" 
-          icon={{
-            icon: faHeartCircleCheck,
-            className: 'tertiary-color'
-          }} 
-          id="div1" 
-          content="3.529" />
+          <Card
+            title="Total de Alunos" 
+            className="minimal-card transition-card dashboard-card student-card" 
+            icon={{
+              icon: faGraduationCap,
+              className: 'primary-color '
+            }} 
+            id="div1" 
+            content="3.529" />
 
-        <Card
-          title="Total de Alunos" 
-          className="minimal-card transition-card dashboard-card student-card" 
-          icon={{
-            icon: faGraduationCap,
-            className: 'primary-color '
-          }} 
-          id="div1" 
-          content="3.529" />
+          <Card
+            title="Treinos do dia" 
+            className="minimal-card transition-card dashboard-card training-card" 
+            icon={{
+              icon: faHeartCircleCheck,
+              className: 'tertiary-color'
+            }} 
+            id="div1" 
+            content="3.529" />
 
-      </section>
+          <Card
+            title="Total de Alunos" 
+            className="minimal-card transition-card dashboard-card student-card" 
+            icon={{
+              icon: faGraduationCap,
+              className: 'primary-color '
+            }} 
+            id="div1" 
+            content="3.529" />
 
-      <section className="container-medium_card flex justify-between">
-        <Card 
-          title="Ultimos Feedbacks" 
-          className="medium_card feedback_card transition-card dashboard-card" 
-          chart="cuador" 
-          icon={faGoogle} 
-          id="div1" 
-          content={<Feedback />}
-          />
+        </section>
 
-        <ChartCard 
-          title="Taxa de Churn" component={<BarChart data={data} />} className="medium_card dashboard-card transition-card" icon={faGoogle} id="div1" content="" />
-      </section>
- 
-      <section className="container-medium_card container-large_card flex justify-between">
-        <ChartCard
-          title="Financeiro"
-          component={<LineChart data={financial} />}
-          className="medium_card transition-card dashboard-card"
-          icon={faGoogle} id="div1"
-          content="This is Card 1" />
-      </section>
-    </main>
+        <section className="container-medium_card flex justify-between">
+          <Card 
+            title="Ultimos Feedbacks" 
+            className="medium_card feedback_card transition-card dashboard-card" 
+            chart="cuador" 
+            icon={faGoogle} 
+            id="div1" 
+            content={<Feedback />}
+            />
+
+          <ChartCard 
+            title="Taxa de Churn" component={<BarChart data={data} />} className="medium_card dashboard-card transition-card" icon={faGoogle} id="div1" content="" />
+        </section>
+  
+        <section className="container-medium_card container-large_card flex justify-between">
+          <ChartCard
+            title="Financeiro"
+            component={<LineChart data={financial} />}
+            className="medium_card transition-card dashboard-card"
+            icon={faGoogle} id="div1"
+            content="This is Card 1" />
+        </section>
+      </main>
+    </>
+
   );
 }
 
