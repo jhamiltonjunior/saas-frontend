@@ -38,6 +38,23 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const menu = menuRef.current;
+      if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
+        menu.classList.remove('simple-menu--open');
+      }
+    };
+  
+    // Adiciona o ouvinte de eventos ao documento
+    document.addEventListener('mousedown', handleClickOutside);
+  
+    return () => {
+      // Remove o ouvinte de eventos ao desmontar
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
 
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],

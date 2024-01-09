@@ -15,6 +15,39 @@
   transition: transform 0.3s ease-out; /* Adiciona uma transição suave */
 }
 
+.simple-menu h2 {
+  font-size: 1.2rem;
+  padding: var(--small);
+  color: var(--tertiary--color);
+}
+
 .simple-menu--open {
   transform: translateX(0); /* Move o menu para a posição original quando aberto */
+}
+
+.simple-menu {
+  /* max-height: calc((21.7px + var(--padding-medium) + 45px) * 6); 1.5rem é assumido como a altura de uma linha, ajuste conforme necessário */
+  overflow-y: auto;
+  /* position: relative; */
+}
+
+.simple-menu::-webkit-scrollbar {
+  width: var(--small);
+}
+
+/* Track (o fundo da barra de rolagem) */
+.simple-menu::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Cor de fundo da barra de rolagem */
+}
+
+/* Handle (a parte móvel da barra de rolagem) */
+.simple-menu::-webkit-scrollbar-thumb {
+  border-radius: var(--border-radius);
+  background: var(--secondary--color); /* Cor da parte móvel da barra de rolagem */
+}
+
+/* Handle on hover */
+.simple-menu::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary--color-hover); /* Cor da parte móvel da barra de rolagem */
+  /* background: #555; Cor da parte móvel da barra de rolagem quando o mouse está sobre ela */
 }
