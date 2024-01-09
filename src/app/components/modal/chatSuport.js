@@ -3,96 +3,99 @@
 import { useEffect, useRef } from 'react';
 import './style.css';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
-function ChatSuport ({ menuRef }) {
+function ChatSuport({ menuRef }) {
 
-  // const menuRef = useRef(null);
+  useEffect(() => {
+    const textarea = document.querySelector('textarea');
+    textarea.addEventListener('input', autoResize, false);
+
+    function autoResize() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    }
+  }, [])
 
   return (
-    
-    <section ref={menuRef} className="menu-profile chat-suport border border-solid border-slate-200">
+
+    <section ref={menuRef} className="chat-suport modal border border-solid border-slate-200">
       <h2>chatsuport</h2>
 
       {/* simples divs para simular notificao em linha */}
 
-      <div className="border-t border-b border-solid flex justify-between items-center">
-        <div className="flex justify-between w-full items-center pr-4 pl-4">
-        <div className="container-img cursor-pointer">
-            
-            </div>
-          
-          <div className="flex flex-col justify-between items-end">
+      <div className="chat_suport_container p-6">
+        <div className="flex justify-end w-full items-center">
+          <div className="text-start message-receiver message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
             {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p className="text-black w-full">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </div>
+
+        <div className="flex justify-start w-full items-center">
+          <div className="text-start message-sender message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
+            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
+            <p className="text-black w-full">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </div>
+
+        <div className="flex justify-start w-full items-center">
+          <div className="text-start message-sender message-chat_suport border border-solid flex flex-col justify-between w-2/4">
+            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
+            <p className="text-black w-full">Lorem ipsum dolor sit.</p>
+          </div>
+        </div>
+
+        <div className="flex justify-end w-full items-center">
+          <div className="text-start message-receiver message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
+            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
+            <p className="text-black w-full">
+              Lorem ipsum dolor sit amet consecteisicing elit
+              Lorem ipsum dolor sit amet consectetur isicing elit.
+              Lorem ipsum dolor sittetur adipisicing elit.
+              Lorem  amet consecteturicing elit.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-end w-full items-center">
+          <div className="text-start message-receiver message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
+            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
+            <p className="text-black w-full">
+              Loremm dolor sit amet consectetur adipisicing elit
+              Lorem ipsum dolor sit amet consectetur icing elit.
+              Lorem iconsectetur adipisicing elit.
+              Lorem ipsum dolor sit amesectetur adipisicing elit.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-end w-full items-center">
+          <div className="text-start message-receiver message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
+            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
+            <p className="text-black w-full">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit
+              Lorem ipsum dolornsectetur adipisicing elit.
+              Lorem ipsum dolor dipisicing elit.
+              Lorem ipsum dolor sit ameipisicing elit.
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-b border-solid flex justify-between items-center">
-        <div className="flex justify-between w-full items-center pr-4 pl-4">
-          <div className="container-img cursor-pointer">
-            
+      <div className="chat_suport_send_message">
+        <form className="flex justify-between p-6">
+          <textarea className=" border-slate-200 p-2 w-full text-chat" type="text" placeholder="Digite sua mensagem" ></textarea>
+
+          <div className="flex justify-end w-full border-b border-l border-r border-slate-200 pt-6 pb-2 pl-2 pr-2">
+            <button className="send-message bg-primary-color text-white p-2 rounded-md w-1/5">
+              <FontAwesomeIcon icon={faPaperPlane} />
+            </button>
           </div>
-          <div className="flex flex-col justify-between items-end">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-        </div>
+        </form>
       </div>
 
-      <div className="border-t border-b border-solid flex justify-between items-center">
-        <div className="flex justify-between w-full items-center pr-4 pl-4">
-          <div className="container-img cursor-pointer">
-            
-          </div>
-          <div className="flex flex-col justify-between items-end">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-        </div>
-      </div>
-
-
-      <div className="border-t border-b border-solid flex justify-between items-center">
-        <div className="flex justify-between w-full items-center pr-4 pl-4">
-          <div className="container-img cursor-pointer">
-            
-          </div>
-          <div className="flex flex-col justify-between items-end">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-        </div>
-      </div>
-
-
-      <div className="border-t border-b border-solid flex justify-between items-center">
-        <div className="flex justify-between w-full items-center pr-4 pl-4">
-          <div className="container-img cursor-pointer">
-         
-          </div>
-          <div className="flex flex-col justify-between items-end">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-b border-solid flex justify-between items-center">
-        <div className="flex justify-between w-full items-center pr-4 pl-4">
-          <div className="container-img cursor-pointer">
-
-          </div>
-          <div className="flex flex-col justify-between items-end">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-        </div>
-      </div>
-
-      
-
-  
     </section>
   )
 }

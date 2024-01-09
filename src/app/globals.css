@@ -28,6 +28,7 @@
   --font-weight-bold: 700;
 
   --border-radius: 0.5rem;
+  --border-radius-large: 1rem;
 
   --text: #3F4C7C;
   --text-black: #363434;
@@ -39,6 +40,8 @@
   --text-atention: #FFCC41;
 
   --background: #fff;
+  /* f6f5f7 */
+  --background-primary: #F6F6F9;
   --background-dark: #F6F6F9;
 
   --focu-button: #3cd83f; /* #3FAA76; */
@@ -93,6 +96,28 @@
 
 .transition-card {
   transition: transform 0.5s ease;
+}
+
+::-webkit-scrollbar {
+  width: var(--small);
+}
+
+/* Track (o fundo da barra de rolagem) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Cor de fundo da barra de rolagem */
+}
+
+/* Handle (a parte móvel da barra de rolagem) */
+::-webkit-scrollbar-thumb {
+  border-radius: var(--border-radius);
+  background: var(--secondary--color); /* Cor da parte móvel da barra de rolagem */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background: var(--secondary--color-hover); /* Cor da parte móvel da barra de rolagem */
+  /* background: #555; Cor da parte móvel da barra de rolagem quando o mouse está sobre ela */
 }
 
 /* body {

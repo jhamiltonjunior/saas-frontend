@@ -10,7 +10,7 @@ html, body {
 }
 
 body {
-	background: #f6f5f7;
+	background: var(--background-primary);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -74,7 +74,12 @@ button.ghost {
 	border-color: #FFFFFF;
 }
 
-
+textarea {
+  resize: none;
+	min-height: 100px;
+  overflow-y: auto;
+	max-height: 200px;
+}
 
 form {
 	background-color: #FFFFFF;

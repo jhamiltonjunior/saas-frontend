@@ -1,4 +1,4 @@
-.simple-menu, .menu-profile {
+.simple-menu, .menu-profile, .chat-suport {
   position: fixed;
   top: var(--height-header);
   right: 4rem;
@@ -10,6 +10,8 @@
   height: 100%;
   max-height: 600px;
 
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
+  border-radius: var(--border-radius-large);
   display: block;
   transform: translateY(-200%); /* Inicia o menu fora da tela */
   transition: transform 0.3s ease-out; /* Adiciona uma transição suave */
@@ -19,7 +21,13 @@
   max-width: 300px;
 }
 
-.simple-menu h2, .menu-profile h2 {
+.chat-suport {
+  max-width: 600px;
+  max-height: 800px;
+  background-color: var(--background);
+}
+
+.simple-menu h2, .menu-profile h2, .modal h2 {
   font-size: 1.2rem;
   padding: var(--small);
   color: var(--tertiary--color);
@@ -29,27 +37,66 @@
   transform: translateX(0); /* Move o menu para a posição original quando aberto */
 }
 
-.simple-menu {
+.simple-menu, .chat-suport {
   overflow-y: auto;
 }
 
-.simple-menu::-webkit-scrollbar {
-  width: var(--small);
+.message-chat_suport {
+  border-radius: var(--border-radius-large);
+  margin-top: var(--small);
+  padding: 1rem;
+}
+/* .message-chat_suport:last-child {
+  margin-bottom: var(--small);
+} */
+.message-chat_suport p {
+  margin: 0;
+  /* padding: 17px 20px; */
 }
 
-/* Track (o fundo da barra de rolagem) */
-.simple-menu::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Cor de fundo da barra de rolagem */
+.message-receiver {
+  background-color: var(--secondary--color);
 }
 
-/* Handle (a parte móvel da barra de rolagem) */
-.simple-menu::-webkit-scrollbar-thumb {
+.message-sender {
+  background-color: var(--background-primary);
+}
+
+.message-receiver p {
+  color: #fff;
+}
+
+.message-sender p {
+  color: #000
+}
+
+.chat_suport_container {
+  display: relative;
+}
+
+.chat_suport_send_message {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  padding: var(--small);
+  background-color: var(--background-primary);
+}
+
+.text-chat {
+  border: none;
+  border-top: 1px solid;
+  border-right: 1px solid;
+  border-left: 1px solid;
+  /* margin-bottom: 2rem; */
   border-radius: var(--border-radius);
-  background: var(--secondary--color); /* Cor da parte móvel da barra de rolagem */
+  
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  outline: none;
 }
 
-/* Handle on hover */
-.simple-menu::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary--color-hover); /* Cor da parte móvel da barra de rolagem */
-  /* background: #555; Cor da parte móvel da barra de rolagem quando o mouse está sobre ela */
+.chat_suport_send_message button {
+  font-size: 1rem;
+  /* margin-bottom: var(--small);
+  margin-right: var(--small); */
 }
