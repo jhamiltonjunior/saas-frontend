@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Card from '../components/dashboard/dashboardCard';
 import ChartCard from '../hook/ChartDashboardCard';
 import Header from '../components/header/header'
@@ -29,25 +29,45 @@ let lucroColor = 'rgba(68, 76, 230';
 export default function Home() {
   const menuRef = useRef(null);
   const menuProfileRef = useRef(null);
+  const [openModal, setOpenModal] = useState(null);
 
-  const menuToggle = (event) => {
+  const toggleNotificationModal = (event) => {
     event.stopPropagation();
   
     const menu = menuRef.current;
+    const elements = document.querySelectorAll('.simple-menu--open');
+    
     if (menu.classList.contains('simple-menu--open')) {
       menu.classList.remove('simple-menu--open');
     } else {
+      elements.forEach((element) => {
+        element.classList.remove('simple-menu--open');
+      });
+
       menu.classList.add('simple-menu--open');
     }
   };
 
-  const menuProfileToggle = (event) => {
+  const toggleProfileModal = (event) => {
     event.stopPropagation();
+
+    console.log('toggleProfileModal')
   
     const menu = menuProfileRef.current;
+
+    const elements = document.querySelectorAll('.simple-menu--open');
+    // console.log(elements);
+    // elements.forEach((element) => {
+    //   element.classList.remove('simple-menu--open');
+    // });
+
     if (menu.classList.contains('simple-menu--open')) {
       menu.classList.remove('simple-menu--open');
     } else {
+      elements.forEach((element) => {
+        element.classList.remove('simple-menu--open');
+      });
+
       menu.classList.add('simple-menu--open');
     }
   };
@@ -55,8 +75,10 @@ export default function Home() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       const menu = menuRef.current;
+      const menuProfile = menuProfileRef.current;
 
       let element = event.target;
+      console.log('aqui');
 
       while (element) {
         if (element.classList.contains('simple-menu-item')) {
@@ -71,16 +93,20 @@ export default function Home() {
         element = element.parentElement;
       }
 
-      if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
-        const elements = menu.querySelectorAll('.simple-menu--open');
-        elements.forEach((element) => {
-          element.classList.remove('simple-menu--open');
-        });
+      // if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
+      //   const elements = menu.querySelectorAll('.simple-menu--open');
+      //   elements.forEach((element) => {
+      //     element.classList.remove('simple-menu--open');
+      //   });
+      // }
+
+      if (menuProfile && !menuProfile.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
+        menuProfile.classList.remove('simple-menu--open');
       }
 
-      // if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
-      //   menu.classList.remove('simple-menu--open');
-      // }
+      if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
+        menu.classList.remove('simple-menu--open');
+      }
     };
   
     // Adiciona o ouvinte de eventos ao documento
@@ -140,7 +166,7 @@ export default function Home() {
 
   return (
     <>
-      {<Header onToggle={{menuToggle, menuProfileToggle}} />}
+      {<Header onToggle={{toggleNotificationModal, toggleProfileModal}} />}
       {<Nofity menuRef={menuRef} />}
       {<MenuProfile menuRef={menuProfileRef} />}
 
