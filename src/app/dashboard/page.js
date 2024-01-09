@@ -6,9 +6,10 @@ import Card from '../components/dashboard/dashboardCard';
 import ChartCard from '../hook/ChartDashboardCard';
 import Header from '../components/header/header'
 import Nofity from '../components/modal/notify'
+import ChatSuport from '../components/modal/chatSuport'
+import { toggleModal } from '../hook/toggleModal'
 import '../globals.css'
 import './style.css'
-import { dragAndDrop } from '../utils/dragginDrop';
 
 import { faGoogle, faFacebook, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 // import { faMoneyCheckDolla } from '@fortawesome/fontawesome-svg-core'
@@ -29,79 +30,35 @@ let lucroColor = 'rgba(68, 76, 230';
 export default function Home() {
   const menuRef = useRef(null);
   const menuProfileRef = useRef(null);
+  const chatSuportRef = useRef(null);
   const [openModal, setOpenModal] = useState(null);
 
-  const toggleNotificationModal = (event) => {
-    event.stopPropagation();
-  
-    const menu = menuRef.current;
-    const elements = document.querySelectorAll('.simple-menu--open');
-    
-    if (menu.classList.contains('simple-menu--open')) {
-      menu.classList.remove('simple-menu--open');
-    } else {
-      elements.forEach((element) => {
-        element.classList.remove('simple-menu--open');
-      });
-
-      menu.classList.add('simple-menu--open');
-    }
-  };
-
-  const toggleProfileModal = (event) => {
-    event.stopPropagation();
-
-    console.log('toggleProfileModal')
-  
-    const menu = menuProfileRef.current;
-
-    const elements = document.querySelectorAll('.simple-menu--open');
-    // console.log(elements);
-    // elements.forEach((element) => {
-    //   element.classList.remove('simple-menu--open');
-    // });
-
-    if (menu.classList.contains('simple-menu--open')) {
-      menu.classList.remove('simple-menu--open');
-    } else {
-      elements.forEach((element) => {
-        element.classList.remove('simple-menu--open');
-      });
-
-      menu.classList.add('simple-menu--open');
-    }
-  };
+  const toggleNotificationModal = toggleModal(menuRef);
+  const toggleChatSuportModal = toggleModal(chatSuportRef)
+  const toggleProfileModal = toggleModal(menuProfileRef);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       const menu = menuRef.current;
       const menuProfile = menuProfileRef.current;
+      const chatSuport = chatSuportRef.current;
 
       let element = event.target;
-      console.log('aqui');
 
       while (element) {
-        if (element.classList.contains('simple-menu-item')) {
+        if (element.classList.contains('menu-item')) {
           return
-          break;
         }
 
-        if (element.classList.contains('menu-profile-item')) {
-          return
-          break;
-        }
         element = element.parentElement;
       }
 
-      // if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
-      //   const elements = menu.querySelectorAll('.simple-menu--open');
-      //   elements.forEach((element) => {
-      //     element.classList.remove('simple-menu--open');
-      //   });
-      // }
-
       if (menuProfile && !menuProfile.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
         menuProfile.classList.remove('simple-menu--open');
+      }
+
+      if (chatSuport && !chatSuport.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
+        chatSuport.classList.remove('simple-menu--open');
       }
 
       if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
@@ -166,9 +123,12 @@ export default function Home() {
 
   return (
     <>
-      {<Header onToggle={{toggleNotificationModal, toggleProfileModal}} />}
+      {<Header onToggle={{
+        toggleNotificationModal, toggleProfileModal, toggleChatSuportModal
+      }} />}
       {<Nofity menuRef={menuRef} />}
       {<MenuProfile menuRef={menuProfileRef} />}
+      {<ChatSuport menuRef={chatSuportRef} />}
 
     
       <main  className="min-h-screen w-screen justify-between p-24 card-container">

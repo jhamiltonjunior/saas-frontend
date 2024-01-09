@@ -36,15 +36,15 @@ function Header ({ onToggle }) {
 
         <div className="flex justify-between items-center menu-header rounded-full">
           {/* <p>n</p> */}
-          <div className="cursor-pointer simple-menu-item" onClick={onToggle.toggleNotificationModal}>
+          <div className="cursor-pointer simple-menu-item menu-item"  onClick={onToggle.toggleNotificationModal}>
             <FontAwesomeIcon icon={faEnvelopeOpen} />
           </div>
 
-          <div className="cursor-pointer">
+          <div className="cursor-pointer  menu-item" onClick={onToggle.toggleChatSuportModal}>
             <FontAwesomeIcon icon={faComments} />
           </div>
 
-          <div className="container-img cursor-pointer menu-profile-item" onClick={onToggle.toggleProfileModal}>
+          <div className="container-img cursor-pointer menu-profile-item menu-item" onClick={onToggle.toggleProfileModal}>
             <Image
               src="/img/image.avif"
               className="rounded-full"
