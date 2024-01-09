@@ -28,12 +28,13 @@ let lucroColor = 'rgba(68, 76, 230';
 export default function Home() {
   const menuRef = useRef(null);
 
-  const menuToggle = () => {
+  const menuToggle = (event) => {
+    event.stopPropagation();
+  
     const menu = menuRef.current;
     if (menu.classList.contains('simple-menu--open')) {
       menu.classList.remove('simple-menu--open');
     } else {
-      console.log('menuToggle');
       menu.classList.add('simple-menu--open');
     }
   };
@@ -41,6 +42,17 @@ export default function Home() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       const menu = menuRef.current;
+
+      let element = event.target;
+
+      while (element) {
+        if (element.classList.contains('simple-menu-item')) {
+          return
+          break;
+        }
+        element = element.parentElement;
+      }
+
       if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
         menu.classList.remove('simple-menu--open');
       }
