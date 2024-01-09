@@ -134,7 +134,7 @@ const App = () => {
 
           <div className="overlay-panel overlay-right">
             <h1>Bem vindo(a) de volta!</h1>
-            <p>Para se manter conectado, faça login com suas informações pessoais</p>
+            <p className="login-text">Para se manter conectado, faça login com suas informações pessoais</p>
             <button className="ghost signUp" id="signUp">Registrar-se</button>
           </div>
         </div>

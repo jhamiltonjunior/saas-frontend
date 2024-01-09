@@ -1,4 +1,4 @@
-.simple-menu {
+.simple-menu, .menu-profile {
   position: fixed;
   top: var(--height-header);
   right: 4rem;
@@ -11,11 +11,15 @@
   max-height: 600px;
 
   display: block;
-  transform: translateY(-120%); /* Inicia o menu fora da tela */
+  transform: translateY(-200%); /* Inicia o menu fora da tela */
   transition: transform 0.3s ease-out; /* Adiciona uma transição suave */
 }
 
-.simple-menu h2 {
+.menu-profile {
+  max-width: 300px;
+}
+
+.simple-menu h2, .menu-profile h2 {
   font-size: 1.2rem;
   padding: var(--small);
   color: var(--tertiary--color);
@@ -26,9 +30,7 @@
 }
 
 .simple-menu {
-  /* max-height: calc((21.7px + var(--padding-medium) + 45px) * 6); 1.5rem é assumido como a altura de uma linha, ajuste conforme necessário */
   overflow-y: auto;
-  /* position: relative; */
 }
 
 .simple-menu::-webkit-scrollbar {

@@ -20,6 +20,7 @@ import { faMoneyCheckDollar, faGraduationCap, faHeartCircleCheck } from '@fortaw
 import { LineChart } from '../components/charts/line';
 import { BarChart } from '../components/charts/bar';
 import Feedback from '../components/feedback/feedback';
+import MenuProfile from '../components/modal/menuProfile';
 
 let receitasColor = 'rgba(0,128,0'; // Verde
 let despesasColor = 'rgba(255,0,0'; // Vermelho
@@ -27,11 +28,23 @@ let lucroColor = 'rgba(68, 76, 230';
 
 export default function Home() {
   const menuRef = useRef(null);
+  const menuProfileRef = useRef(null);
 
   const menuToggle = (event) => {
     event.stopPropagation();
   
     const menu = menuRef.current;
+    if (menu.classList.contains('simple-menu--open')) {
+      menu.classList.remove('simple-menu--open');
+    } else {
+      menu.classList.add('simple-menu--open');
+    }
+  };
+
+  const menuProfileToggle = (event) => {
+    event.stopPropagation();
+  
+    const menu = menuProfileRef.current;
     if (menu.classList.contains('simple-menu--open')) {
       menu.classList.remove('simple-menu--open');
     } else {
@@ -50,12 +63,24 @@ export default function Home() {
           return
           break;
         }
+
+        if (element.classList.contains('menu-profile-item')) {
+          return
+          break;
+        }
         element = element.parentElement;
       }
 
       if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
-        menu.classList.remove('simple-menu--open');
+        const elements = menu.querySelectorAll('.simple-menu--open');
+        elements.forEach((element) => {
+          element.classList.remove('simple-menu--open');
+        });
       }
+
+      // if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
+      //   menu.classList.remove('simple-menu--open');
+      // }
     };
   
     // Adiciona o ouvinte de eventos ao documento
@@ -115,8 +140,9 @@ export default function Home() {
 
   return (
     <>
-      {<Header onToggle={menuToggle} />}
+      {<Header onToggle={{menuToggle, menuProfileToggle}} />}
       {<Nofity menuRef={menuRef} />}
+      {<MenuProfile menuRef={menuProfileRef} />}
 
     
       <main  className="min-h-screen w-screen justify-between p-24 card-container">
