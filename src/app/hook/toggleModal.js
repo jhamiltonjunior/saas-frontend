@@ -1,16 +1,16 @@
-export const toggleModal = (ref) => (event) => {
+export const toggleModal = (ref, className = 'simple-menu--open') => (event) => {
   event.stopPropagation();
 
   const menu = ref.current;
-  const elements = document.querySelectorAll('.simple-menu--open');
+  const elements = document.querySelectorAll('.' + className);
 
-  if (menu.classList.contains('simple-menu--open')) {
-    menu.classList.remove('simple-menu--open');
+  if (menu.classList.contains(className)) {
+    menu.classList.remove(className);
   } else {
     elements.forEach((element) => {
-      element.classList.remove('simple-menu--open');
+      element.classList.remove(className);
     });
 
-    menu.classList.add('simple-menu--open');
+    menu.classList.add(className);
   }
 };

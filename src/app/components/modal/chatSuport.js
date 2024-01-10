@@ -6,8 +6,13 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faGear } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import MiniConfig from './miniConfig';
+import { toggleModal } from '../../hook/toggleModal';
 
 function ChatSuport({ menuRef }) {
+  const miniCofingLeftRef = useRef(null);
+
+  const toggleMiniConfigLeft = toggleModal(miniCofingLeftRef, 'mini_config--open');
 
   useEffect(() => {
     const textarea = document.querySelector('.chat_suport_send_message textarea');
@@ -22,15 +27,25 @@ function ChatSuport({ menuRef }) {
   return (
 
     <section ref={menuRef} className="chat-suport modal border border-solid border-slate-200">
+
+      <MiniConfig content={
+        <div className="flex flex-col justify-center items-center">
+          Abrir Whatsapp Web
+         </div>
+        }
+        toggleMenu={miniCofingLeftRef}
+      />
+
+
       <div className="chat_suport_header sticky top-0 flex justify-between items-center px-6">
-        <div className="font-bold">
-           <FontAwesomeIcon className="font-bold" icon={faWhatsapp} />
+        <div className="font-bold" onClick={toggleMiniConfigLeft}>
+           <FontAwesomeIcon className="font-bold cursor-pointer" icon={faWhatsapp} />
         </div>
         
         <h2>Suporte</h2>
 
         <div>
-          <FontAwesomeIcon icon={faGear} />
+          <FontAwesomeIcon className="cursor-pointer" icon={faGear} />
         </div>
 
       </div>
