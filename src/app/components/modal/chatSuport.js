@@ -4,12 +4,13 @@ import { useEffect, useRef } from 'react';
 import './style.css';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane, faGear } from '@fortawesome/free-solid-svg-icons'
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
 function ChatSuport({ menuRef }) {
 
   useEffect(() => {
-    const textarea = document.querySelector('textarea');
+    const textarea = document.querySelector('.chat_suport_send_message textarea');
     textarea.addEventListener('input', autoResize, false);
 
     function autoResize() {
@@ -21,7 +22,18 @@ function ChatSuport({ menuRef }) {
   return (
 
     <section ref={menuRef} className="chat-suport modal border border-solid border-slate-200">
-      <h2>chatsuport</h2>
+      <div className="chat_suport_header sticky top-0 flex justify-between items-center px-6">
+        <div className="font-bold">
+           <FontAwesomeIcon className="font-bold" icon={faWhatsapp} />
+        </div>
+        
+        <h2>Suporte</h2>
+
+        <div>
+          <FontAwesomeIcon icon={faGear} />
+        </div>
+
+      </div>
 
       {/* simples divs para simular notificao em linha */}
 
