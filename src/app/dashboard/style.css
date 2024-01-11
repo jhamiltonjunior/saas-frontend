@@ -15,9 +15,11 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	/* max-width: 100vh; */
 	font-family: 'Montserrat', sans-serif;
+	overflow-x: hidden;
 	/* height: 100vh; */
-	margin: -0 0 50px;
+	/* margin: -0 0 50px; */
 }
 
 h1 {
@@ -76,7 +78,7 @@ button.ghost {
 
 textarea {
   resize: none;
-	min-height: 100px;
+	/* min-height: 100px; */
   overflow-y: auto;
 	max-height: 200px;
 }

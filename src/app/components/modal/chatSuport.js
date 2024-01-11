@@ -4,15 +4,17 @@ import { useEffect, useRef } from 'react';
 import './style.css';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faGear } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane, faGear, faArrowUpRightFromSquare, faToggleOn, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import MiniConfig from './miniConfig';
 import { toggleModal } from '../../hook/toggleModal';
 
 function ChatSuport({ menuRef }) {
   const miniCofingLeftRef = useRef(null);
+  const miniCofingRightRef = useRef(null);
 
   const toggleMiniConfigLeft = toggleModal(miniCofingLeftRef, 'mini_config--open');
+  const toggleMiniConfigRight = toggleModal(miniCofingRightRef, 'mini_config--open');
 
   useEffect(() => {
     const textarea = document.querySelector('.chat_suport_send_message textarea');
@@ -28,12 +30,31 @@ function ChatSuport({ menuRef }) {
 
     <section ref={menuRef} className="chat-suport modal border border-solid border-slate-200">
 
-      <MiniConfig content={
-        <div className="flex flex-col justify-center items-center">
-          Abrir Whatsapp Web
+      <MiniConfig className="left-1" content={
+        <div className="flex flex-row justify-center items-center">
+          <p className="cursor-pointer m-0 w-full">
+            Abrir Whatsapp Web  <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+          </p>
          </div>
         }
         toggleMenu={miniCofingLeftRef}
+      />
+
+      <MiniConfig className="right-3" content={
+        <>
+          <div className="flex flex-row justify-center items-center">
+            <p className="cursor-pointer m-0 w-full">
+              Deseja enviar com Enter? <FontAwesomeIcon icon={faToggleOn} />
+            </p>
+          </div>
+          <div className="flex flex-row justify-center items-center">
+          <p className="cursor-pointer m-0 w-full">
+            Deseja encerrar o chat? <FontAwesomeIcon icon={faTrashCan} />
+          </p>
+          </div>
+        </>
+        }
+        toggleMenu={miniCofingRightRef}
       />
 
 
@@ -44,7 +65,7 @@ function ChatSuport({ menuRef }) {
         
         <h2>Suporte</h2>
 
-        <div>
+        <div onClick={toggleMiniConfigRight}>
           <FontAwesomeIcon className="cursor-pointer" icon={faGear} />
         </div>
 

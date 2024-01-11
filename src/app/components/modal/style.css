@@ -38,6 +38,8 @@
   transform: translateX(0); /* Move o menu para a posição original quando aberto */
 }
 
+
+
 .chat-suport {
   display: flex;
   flex-direction: column;
@@ -126,5 +128,22 @@
 
 .mini_config {
   max-width: 300px;
+  /* left: 4rem; */
   height: auto;
+  text-align: center;
+  /* padding: var(--small) 0; */
+}
+
+.mini_config p {
+  padding: var(--small);
+}
+
+@media screen and (max-height: 738px) {
+  .text-chat {
+    min-height: 50px;
+  }
+
+  .simple-menu--open {
+    max-height: 660px;
+  }
 }
