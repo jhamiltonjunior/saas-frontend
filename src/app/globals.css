@@ -36,9 +36,11 @@
   --text-alert: #ffab1b;
   --text-success: #3cd83f;
   --text-error: #ff4b2b;
+  --text-break: #ff0000;
   --text-warning: #ffab1b;
   --text-atention: #FFCC41;
 
+  --light-color: #fff;
   --background: #fff;
   /* f6f5f7 */
   --background-primary: #F6F6F9;
