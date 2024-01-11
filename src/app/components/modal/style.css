@@ -1,7 +1,5 @@
 .simple-menu, .menu-profile, .chat-suport, .mini_config {
   position: fixed;
-  top: var(--height-header);
-  right: 4rem;
   margin-top: var(--small);
   z-index: 100;
   background-color: #fff;
@@ -15,6 +13,11 @@
   display: block;
   transform: translateY(-200%); /* Inicia o menu fora da tela */
   transition: transform 0.3s ease-out; /* Adiciona uma transição suave */
+}
+
+.simple-menu, .menu-profile, .chat-suport {
+  top: var(--height-header);
+  right: 4rem;
 }
 
 .menu-profile {
@@ -35,10 +38,10 @@
 
 .simple-menu--open,
 .mini_config--open {
+  visibility: visible;
+  opacity: 1;
   transform: translateX(0); /* Move o menu para a posição original quando aberto */
 }
-
-
 
 .chat-suport {
   display: flex;
@@ -113,6 +116,16 @@
   margin-right: var(--small); */
 }
 
+.chat_suport_send_message .reset_button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #3f3f3f;
+  padding-left: calc(var(--small) + var(--small));
+  padding-right: calc(var(--small) + var(--small));
+}
+
 .chat_suport_header {
   z-index: 100;
   background-color: var(--primary--color);
@@ -129,7 +142,9 @@
 .mini_config {
   max-width: 300px;
   /* left: 4rem; */
+  
   height: auto;
+  max-height: auto;
   text-align: center;
   /* padding: var(--small) 0; */
 }

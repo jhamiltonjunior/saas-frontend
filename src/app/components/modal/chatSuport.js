@@ -4,7 +4,15 @@ import { useEffect, useRef } from 'react';
 import './style.css';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faGear, faArrowUpRightFromSquare, faToggleOn, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { 
+  faPaperPlane,
+  faGear,
+  faArrowUpRightFromSquare,
+  faToggleOn,
+  faTrashCan,
+  faFaceSmile,
+  faPaperclip
+} from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import MiniConfig from './miniConfig';
 import { toggleModal } from '../../hook/toggleModal';
@@ -12,9 +20,16 @@ import { toggleModal } from '../../hook/toggleModal';
 function ChatSuport({ menuRef }) {
   const miniCofingLeftRef = useRef(null);
   const miniCofingRightRef = useRef(null);
+  const miniCofingAttachmentRef = useRef(null);
+  const chatRef = useRef(null);
 
   const toggleMiniConfigLeft = toggleModal(miniCofingLeftRef, 'mini_config--open');
   const toggleMiniConfigRight = toggleModal(miniCofingRightRef, 'mini_config--open');
+  const toggleMiniConfigAttachment = toggleModal(miniCofingAttachmentRef, 'mini_config--open');
+
+  const onSumitForm = (e) => {
+    e.preventDefault();
+  }
 
   useEffect(() => {
     const textarea = document.querySelector('.chat_suport_send_message textarea');
@@ -24,13 +39,16 @@ function ChatSuport({ menuRef }) {
       this.style.height = 'auto';
       this.style.height = this.scrollHeight + 'px';
     }
+
+    const element = chatRef.current;
+    element.scrollTop = element.scrollHeight;
   }, [])
 
   return (
 
     <section ref={menuRef} className="chat-suport modal border border-solid border-slate-200">
 
-      <MiniConfig className="left-1" content={
+      <MiniConfig className="top-16 left-1" content={
         <div className="flex flex-row justify-center items-center">
           <p className="cursor-pointer m-0 w-full">
             Abrir Whatsapp Web  <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
@@ -40,7 +58,7 @@ function ChatSuport({ menuRef }) {
         toggleMenu={miniCofingLeftRef}
       />
 
-      <MiniConfig className="right-3" content={
+      <MiniConfig className="top-16 right-3" content={
         <>
           <div className="flex flex-row justify-center items-center">
             <p className="cursor-pointer m-0 w-full">
@@ -55,6 +73,28 @@ function ChatSuport({ menuRef }) {
         </>
         }
         toggleMenu={miniCofingRightRef}
+      />
+
+      <MiniConfig className="top-16 left-3" content={
+        <>
+          <div className="flex flex-row justify-center items-center">
+            <p className="cursor-pointer m-0 w-full">
+              Deseja Anexar Arquivos?
+            </p>
+          </div>
+          <div className="flex flex-row justify-center items-center">
+            <p className="m-0 w-full">
+              Arquivos Anexados:
+            </p>
+          </div>
+          <div className="flex flex-row justify-center items-center">
+            <p className="m-0 w-full">
+              smirnofy.png
+            </p>
+          </div>
+        </>
+        }
+        toggleMenu={miniCofingAttachmentRef}
       />
 
 
@@ -73,7 +113,7 @@ function ChatSuport({ menuRef }) {
 
       {/* simples divs para simular notificao em linha */}
 
-      <div className="chat_suport_container p-6">
+      <div ref={chatRef} className="chat_suport_container p-6">
         <div className="flex justify-end w-full items-center">
           <div className="text-start message-receiver message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
             {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
@@ -132,11 +172,19 @@ function ChatSuport({ menuRef }) {
         </div>
       </div>
 
-      <div className="chat_suport_send_message">
-        <form className="flex justify-between p-6">
+      <div className="chat_suport_send_message z-50">
+        <form onSubmit={onSumitForm} className="flex justify-between p-6">
           <textarea className=" border-slate-200 p-2 w-full text-chat" type="text" placeholder="Digite sua mensagem" ></textarea>
 
-          <div className="flex justify-end w-full border-b border-l border-r border-slate-200 pt-6 pb-2 pl-2 pr-2">
+          <div className="flex justify-between w-full border-b border-l border-r border-slate-200 pt-6 pb-2 pl-2 pr-2">
+            <div className="text-slate-800">
+              <button className="reset_button">
+                <FontAwesomeIcon icon={faFaceSmile} />
+              </button>
+              <button className="reset_button" onClick={toggleMiniConfigAttachment}>
+                <FontAwesomeIcon icon={faPaperclip} />
+              </button>
+            </div>
             <button className="send-message bg-primary-color text-white p-2 rounded-md w-1/5">
               <FontAwesomeIcon icon={faPaperPlane} />
             </button>

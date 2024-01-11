@@ -1,7 +1,7 @@
 
 function MiniConfig({content, toggleMenu, className}) {
   return (
-    <div ref={toggleMenu} className={"fixed top-16 mini_config " + className}>
+    <div ref={toggleMenu} className={"fixed mini_config " + className}>
       {content}
     </div>
   );
