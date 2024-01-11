@@ -67,6 +67,8 @@
 
   --smaller: 0.2rem;
   --small: 0.5rem;
+  --medium: 1rem;
+  --large: 2rem;
 
   --max-large-width: 1728px;
   --max-larger-width: 1905px;

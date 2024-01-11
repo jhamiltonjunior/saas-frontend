@@ -22,6 +22,7 @@ import { LineChart } from '../components/charts/line';
 import { BarChart } from '../components/charts/bar';
 import Feedback from '../components/feedback/feedback';
 import MenuProfile from '../components/modal/menuProfile';
+import NavBar from '../components/modal/navBar';
 
 let receitasColor = 'rgba(0,128,0'; // Verde
 let despesasColor = 'rgba(255,0,0'; // Vermelho
@@ -129,6 +130,7 @@ export default function Home() {
       {<Nofity menuRef={menuRef} />}
       {<MenuProfile menuRef={menuProfileRef} />}
       {<ChatSuport menuRef={chatSuportRef} />}
+      {<NavBar />}
 
     
       <main  className="min-h-screen w-screen justify-between p-24 card-container">

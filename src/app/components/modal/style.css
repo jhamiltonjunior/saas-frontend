@@ -153,6 +153,25 @@
   padding: var(--small);
 }
 
+.main_nav_bar {
+  width: var(--large);
+  /* width: 100%; */
+  margin-top: var(--height-header);
+  height: calc(100vh - var(--height-header));
+  background-color: #fff;
+  /* background-color: var(--primary--color); */
+}
+
+.toggle_main_nav_bar {
+  width: var(--large);
+  font-size: var(--medium);
+  right: -50%;
+  z-index: 100;
+  background-color: #fff;
+  padding: var(--small);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
+}
+
 @media screen and (max-height: 738px) {
   .text-chat {
     min-height: 50px;
