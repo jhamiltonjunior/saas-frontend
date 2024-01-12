@@ -260,9 +260,22 @@
     max-width: 100%;
   }
 
-  /* .container_writer_message {
-    max-width: 300px;
-  } */
+  .main_nav_bar {
+    transform: translateX(-98%); 
+  }
+
+  .main_nav_bar--open {
+    transform: translateX(0); 
+  }
+
+  .toggle_main_nav_bar {
+    right: -20%;
+  }
+
+  .main_nav_bar--open .toggle_main_nav_bar {
+    transform: translateX(-20%);
+    /* right: -125%; */
+  }
 
   .simple-menu--open {
     left: 0;
