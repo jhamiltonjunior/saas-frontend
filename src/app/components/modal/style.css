@@ -271,7 +271,7 @@
     width: 100%;
     max-width: 98%;
     /* margin-top: var(--height-header); */
-    max-height: calc(100vh - var(--height-header) - var(--small));
+    max-height: calc(100vh - var(--height-header) - var(--large));
     transform: translateX(0);
 }
 
