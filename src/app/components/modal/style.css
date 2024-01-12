@@ -249,7 +249,7 @@
   }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 412px) {
   .text-chat {
     max-height: 50px;
   }
@@ -266,16 +266,50 @@
 
   .simple-menu--open {
     left: 0;
-    z-index: 103;
-    width: 92.5%;
-    max-width: 92.5%;
+    z-index: 104;
+    /* width: 92.5%; */
+    width: 100%;
+    max-width: 100%;
+    /* margin-top: var(--height-header); */
     max-height: calc(100vh - var(--height-header));
     transform: translateX(0);
 }
 
   .chat-suport {
-    max-height: calc(100vh - var(--height-header));
+    z-index: 104;
+    top: calc(var(--height-header) - var(--small));
     left: 0;
+    /* transform: translate(-50%, -50%); */
+  }
+}
+
+@media screen and (max-width: 380px) {
+  /* .text-chat {
+    max-height: 50px;
+  }
+
+  .chat_suport_send_message textarea,
+  .container_writer_message,
+  .chat_suport_send_message form {
+    max-width: 100%;
+  } */
+
+  /* .container_writer_message {
+    max-width: 300px;
+  } */
+
+  /* .simple-menu--open {
+    left: 0;
+    z-index: 104;
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100vh - var(--height-header));
+    transform: translateX(0);
+  } */
+
+  .chat-suport {
+    /* max-height: calc(100vh - var(--height-header));
+    left: 0; */
     /* transform: translate(-50%, -50%); */
   }
 }
