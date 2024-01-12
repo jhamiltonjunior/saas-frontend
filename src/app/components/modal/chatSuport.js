@@ -176,7 +176,7 @@ function ChatSuport({ menuRef }) {
         <form onSubmit={onSumitForm} className="flex justify-between p-6">
           <textarea className=" border-slate-200 p-2 w-full text-chat" type="text" placeholder="Digite sua mensagem" ></textarea>
 
-          <div className="flex justify-between w-full border-b border-l border-r border-slate-200 pt-6 pb-2 pl-2 pr-2">
+          <div className="container_writer_message flex justify-between w-full border-b border-l border-r border-slate-200 pt-6 pb-2 pl-2 pr-2">
             <div className="text-slate-800">
               <button className="reset_button">
                 <FontAwesomeIcon icon={faFaceSmile} />

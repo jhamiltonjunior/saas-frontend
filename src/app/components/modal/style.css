@@ -227,15 +227,55 @@
     right: -10%;
     /* right: -49%; */
   }
-
 }
 
-@media screen and (max-height: 738px) {
+@media screen and (max-height: 788px) {
   .text-chat {
     min-height: 50px;
   }
 
   .simple-menu--open {
     max-height: 660px;
+  }
+}
+
+@media screen and (max-height: 710px) {
+  .text-chat {
+    min-height: 50px;
+  }
+
+  .simple-menu--open {
+    /* max-height: calc(100vh - var(--height-header)); */
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .text-chat {
+    max-height: 50px;
+  }
+
+  .chat_suport_send_message textarea,
+  .container_writer_message,
+  .chat_suport_send_message form {
+    max-width: 100%;
+  }
+
+  /* .container_writer_message {
+    max-width: 300px;
+  } */
+
+  .simple-menu--open {
+    left: 0;
+    z-index: 103;
+    width: 92.5%;
+    max-width: 92.5%;
+    max-height: calc(100vh - var(--height-header));
+    transform: translateX(0);
+}
+
+  .chat-suport {
+    max-height: calc(100vh - var(--height-header));
+    left: 0;
+    /* transform: translate(-50%, -50%); */
   }
 }
