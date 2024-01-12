@@ -264,9 +264,9 @@
     transform: translateX(-98%); 
   }
 
-  .main_nav_bar--open {
+  /* .main_nav_bar--open {
     transform: translateX(0); 
-  }
+  } */
 
   .toggle_main_nav_bar {
     right: -20%;
