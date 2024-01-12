@@ -264,16 +264,16 @@
     transform: translateX(-98%); 
   }
 
-  /* .main_nav_bar--open {
+  .main_nav_bar--open {
     transform: translateX(0); 
-  } */
+  }
 
   .toggle_main_nav_bar {
     right: -20%;
   }
 
   .main_nav_bar--open .toggle_main_nav_bar {
-    transform: translateX(-20%);
+    transform: translateX(-60%);
     /* right: -125%; */
   }
 
@@ -292,37 +292,6 @@
     z-index: 104;
     top: calc(var(--height-header) - var(--small));
     left: 0;
-    /* transform: translate(-50%, -50%); */
-  }
-}
-
-@media screen and (max-width: 380px) {
-  /* .text-chat {
-    max-height: 50px;
-  }
-
-  .chat_suport_send_message textarea,
-  .container_writer_message,
-  .chat_suport_send_message form {
-    max-width: 100%;
-  } */
-
-  /* .container_writer_message {
-    max-width: 300px;
-  } */
-
-  /* .simple-menu--open {
-    left: 0;
-    z-index: 104;
-    width: 100%;
-    max-width: 100%;
-    max-height: calc(100vh - var(--height-header));
-    transform: translateX(0);
-  } */
-
-  .chat-suport {
-    /* max-height: calc(100vh - var(--height-header));
-    left: 0; */
     /* transform: translate(-50%, -50%); */
   }
 }
