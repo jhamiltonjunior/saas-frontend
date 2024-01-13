@@ -244,9 +244,9 @@
     min-height: 50px;
   }
 
-  .simple-menu--open {
+  /* .simple-menu--open { */
     /* max-height: calc(100vh - var(--height-header)); */
-  }
+  /* } */
 }
 
 @media screen and (max-width: 412px) {
