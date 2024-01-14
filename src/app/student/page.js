@@ -23,6 +23,7 @@ import { BarChart } from '../components/charts/bar';
 import Feedback from '../components/feedback/feedback';
 import MenuProfile from '../components/modal/menuProfile';
 import NavBar from '../components/modal/navBar';
+import Search from '../components/seach/search';
 
 let receitasColor = 'rgba(0,128,0'; // Verde
 let despesasColor = 'rgba(255,0,0'; // Vermelho
@@ -41,9 +42,6 @@ export default function Home() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       const menu = menuRef.current;
-      const menuProfile = menuProfileRef.current;
-      const chatSuport = chatSuportRef.current;
-
       let element = event.target;
 
       while (element) {
@@ -54,73 +52,17 @@ export default function Home() {
         element = element.parentElement;
       }
 
-      if (menuProfile && !menuProfile.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
-        menuProfile.classList.remove('simple-menu--open');
-      }
-
-      if (chatSuport && !chatSuport.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
-        chatSuport.classList.remove('simple-menu--open');
-      }
-
       if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
         menu.classList.remove('simple-menu--open');
       }
     };
   
-    // Adiciona o ouvinte de eventos ao documento
     document.addEventListener('mousedown', handleClickOutside);
   
     return () => {
-      // Remove o ouvinte de eventos ao desmontar
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
-
-  const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        label: 'My First dataset',
-        backgroundColor: 'rgba(68, 76, 230,0.6)',
-        borderColor: 'rgba(68, 76, 230,1)',
-        data: [5, 8 , 6, 9, 7, 10, 5]
-      },
-      {
-        label: 'My First dataset',
-        backgroundColor: 'rgba(255,50,50,0.6)',
-        borderColor: 'rgba(255,50,50,1)',
-        data: [2, 6, 2, 7, 6, 3, 3]
-      }
-    ]
-  };
-
-  const financial = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        label: 'Receitas',
-        backgroundColor: receitasColor + ', 0.6)',
-        borderColor: receitasColor + ', 0.4)',
-        data: [5, 6, 3, 7, 7, 3, 8],
-        tension: 0.09
-      },
-      {
-        label: 'Despesas',
-        backgroundColor: despesasColor + ', 0)',
-        borderColor: despesasColor + ', 0.8)',
-        data: [2, 2, 1, 4, 2, 1, 3],
-        tension: 0.09
-      },
-      {
-        label: 'Lucro',
-        backgroundColor: lucroColor + ', 0.6)',
-        borderColor: lucroColor + ',0.8)',
-        data: [3, 4, 2, 3, 5, 2, 5],
-        tension: 0.09
-      }
-    ]
-  };
 
   return (
     <>
@@ -133,14 +75,10 @@ export default function Home() {
       {<NavBar />}
 
     
-      <main  className="min-h-screen w-screen justify-between p-24 card-container">
-        
+      <main  className="flex min-h-screen w-screen justify-between p-24">
+        <Search />
       </main>
     </>
 
   );
-}
-
-function labels () {
-  
 }
