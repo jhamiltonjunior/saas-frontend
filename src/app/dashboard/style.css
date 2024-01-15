@@ -76,13 +76,6 @@ button.ghost {
 	border-color: #FFFFFF;
 }
 
-textarea {
-  resize: none;
-	/* min-height: 100px; */
-  overflow-y: auto;
-	max-height: 200px;
-}
-
 form {
 	background-color: #FFFFFF;
 	display: flex;

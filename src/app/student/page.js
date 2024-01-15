@@ -42,6 +42,8 @@ export default function Home() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       const menu = menuRef.current;
+      const menuProfile = menuProfileRef.current;
+      const chatSuport = chatSuportRef.current;
       let element = event.target;
 
       while (element) {
@@ -52,6 +54,13 @@ export default function Home() {
         element = element.parentElement;
       }
 
+      if (menuProfile && !menuProfile.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
+        menuProfile.classList.remove('simple-menu--open');
+      }
+
+      if (chatSuport && !chatSuport.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
+        chatSuport.classList.remove('simple-menu--open');
+      }
       if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
         menu.classList.remove('simple-menu--open');
       }
