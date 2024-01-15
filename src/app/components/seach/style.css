@@ -1,5 +1,6 @@
 .container_search {
   max-width: 325px;
+  min-width: 325px;
   max-height: 125px;
   border: .5px solid var(--slate-400);
   padding: var(--small);
@@ -18,7 +19,6 @@
   width: 90%;
   padding: var(--small);
   border-radius: var(--smaller);
-
 }
 
 .container_list_students {
