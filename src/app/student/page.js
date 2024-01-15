@@ -85,7 +85,7 @@ export default function Home() {
       {<NavBar />}
 
     
-      <main  className="flex flex-row min-h-screen w-screen justify-between p-24">
+      <main  className="container_students flex flex-row min-h-screen w-screen justify-between p-24">
         <Search />
         <ListStudents  />
       </main>

@@ -2,6 +2,7 @@
   max-width: 325px;
   min-width: 325px;
   max-height: 125px;
+  min-height: 125px;
   border: .5px solid var(--slate-400);
   padding: var(--small);
   background-color: var(--background);
@@ -22,10 +23,24 @@
 }
 
 .container_list_students {
-  border: .5px solid var(--slate-400);
-  padding: var(--small);
+	max-height: 100%;
+	overflow-y: auto;
+  margin-left: var(--medium);
+  padding: 0;
+  box-shadow: 0 0 0 1px var(--border-color);
+}
+
+.container_list_students ul li{
   background-color: var(--background);
   border-radius: var(--border-radius-large);
-  box-shadow: 0 0 0 1px var(--border-color);
+}
 
+.container_list_students ul li:not(:nth-child(1)) {
+  margin-top: var(--small);
+}
+
+@media screen and (max-width: 924px) {
+  .container_list_students {
+    margin-top: calc(var(--medium) + var(--small));
+	}
 }

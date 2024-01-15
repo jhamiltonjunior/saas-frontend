@@ -9,3 +9,13 @@ html, body {
 	height: 100%;
 }
 
+@media screen and (max-width: 924px) {
+	.container_students {
+    /* margin-top: var(--medium); */
+    margin-left: 0;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+	}
+}
