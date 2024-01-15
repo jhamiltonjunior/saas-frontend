@@ -24,6 +24,7 @@ import Feedback from '../components/feedback/feedback';
 import MenuProfile from '../components/modal/menuProfile';
 import NavBar from '../components/modal/navBar';
 import Search from '../components/seach/search';
+import ListStudents from '../components/seach/listStudents';
 
 let receitasColor = 'rgba(0,128,0'; // Verde
 let despesasColor = 'rgba(255,0,0'; // Vermelho
@@ -84,8 +85,9 @@ export default function Home() {
       {<NavBar />}
 
     
-      <main  className="flex min-h-screen w-screen justify-between p-24">
+      <main  className="flex flex-row min-h-screen w-screen justify-between p-24">
         <Search />
+        <ListStudents  />
       </main>
     </>
 

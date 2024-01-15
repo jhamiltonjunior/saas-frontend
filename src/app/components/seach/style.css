@@ -4,7 +4,7 @@
   border: .5px solid var(--slate-400);
   padding: var(--small);
   background-color: var(--background);
-  border-radius: var(--smaller);
+  border-radius: var(--border-radius-large);
   box-shadow: 0 0 0 1px var(--border-color);
 
   display: flex;
@@ -18,5 +18,14 @@
   width: 90%;
   padding: var(--small);
   border-radius: var(--smaller);
+
+}
+
+.container_list_students {
+  border: .5px solid var(--slate-400);
+  padding: var(--small);
+  background-color: var(--background);
+  border-radius: var(--border-radius-large);
+  box-shadow: 0 0 0 1px var(--border-color);
 
 }
