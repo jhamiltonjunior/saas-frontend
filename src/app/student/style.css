@@ -26,4 +26,8 @@ html, body {
 		padding-left: var(--small);
 		padding-right: var(--small);
 	}
+
+	.modal_show_data_student {
+		/* margin-top: 6rem; */
+	}
 }

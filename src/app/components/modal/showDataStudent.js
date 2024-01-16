@@ -1,7 +1,8 @@
 'use client';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+
 import { useEffect, useRef } from 'react';
 import { toggleModal } from '@/app/hook/toggleModal';
 import Image from 'next/image';
@@ -12,9 +13,13 @@ function ShowDataStudent ({ student, menuRef }) {
 
     return (
         <section ref={menuRef} className="modal_show_data_student">
-          <header className="mb-8">
+          <header className="mb-8 flex justify-between">
             <button onClick={toggleShowStudentModal}>
               <FontAwesomeIcon icon={faChevronLeft} /> Voltar
+            </button>
+
+            <button onClick={toggleShowStudentModal}>
+              <FontAwesomeIcon icon={faTrashCan} /> Inativar
             </button>
           </header>
 

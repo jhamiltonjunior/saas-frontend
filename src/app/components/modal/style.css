@@ -216,6 +216,77 @@
   transform: rotate(180deg);
 }
 
+
+.modal_show_data_student {
+  position: fixed;
+  top: 6rem;
+  background-color: #fff;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto 0;
+  max-width: 1750px;
+  max-height: 800px;
+  overflow-y: auto;
+
+  padding: var(--medium);
+
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
+  border-radius: var(--border-radius-large);
+  /* transform: translateY(-200%); Inicia o menu fora da tela */
+  transition: transform 0.3s ease-out; /* Adiciona uma transição suave */
+}
+
+.modal_show_data_student {
+  transform: translateY(200%);
+}
+
+.modal_show_data_student--open {
+  transform: translateY(0); /* Move o menu para a posição original quando aberto */
+}
+
+.container_data_student input {
+  transition: border-bottom 0.3s ease-out;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  outline: none;
+  width: 100%;
+  background-color: #e6e6e634;
+  /* border-top-left-radius: var(--small); */
+  /* border-top-right-radius: var(--small); */
+  padding: var(--small);
+  margin-bottom: var(--small);
+
+  translate: transform 0.3s ease-out;
+}
+
+
+.container_data_student input:focus {
+  /* box-shadow: 0 2px 0 #000; */
+  border-bottom: 1px solid var(--secondary--color-hover);
+}
+
+.modal_show_data_student header button {
+  background-color: transparent;
+  border: none;
+  border: 1px solid var(--primary--color);
+  color: var(--primary--color);
+  outline: none;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: transform 0.3s ease-out;
+}
+
+.modal_show_data_student header button:nth-child(2) {
+  border: 1px solid var(--text-break);
+  color: var(--text-break);
+}
+/* --text-error: #ff4b2b; */
+  /* --text-break */
+.modal_show_data_student header button:hover {
+  transform: scale(1.1);
+}
+
+
 @media screen and (max-height: 1537px) {
   .toggle_main_nav_bar {
     /* transform: translateX(58%); */
@@ -286,7 +357,7 @@
     /* margin-top: var(--height-header); */
     max-height: calc(100vh - var(--height-header) - var(--large));
     transform: translateX(0);
-}
+  }
 
   .chat-suport {
     z-index: 104;
@@ -294,52 +365,8 @@
     left: 0;
     /* transform: translate(-50%, -50%); */
   }
-}
 
-.modal_show_data_student {
-  position: fixed;
-  top: 6rem;
-  background-color: #fff;
-  width: 90%;
-  height: 100%;
-  margin: 0 auto 0;
-  max-width: 1750px;
-  max-height: 800px;
-  overflow-y: auto;
-
-  padding: var(--medium);
-
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
-  border-radius: var(--border-radius-large);
-  /* transform: translateY(-200%); Inicia o menu fora da tela */
-  transition: transform 0.3s ease-out; /* Adiciona uma transição suave */
-}
-
-.modal_show_data_student {
-  transform: translateY(200%);
-}
-
-.modal_show_data_student--open {
-  transform: translateY(0); /* Move o menu para a posição original quando aberto */
-}
-
-.container_data_student input {
-  transition: border-bottom 0.3s ease-out;
-  border: none;
-  border-bottom: 1px solid #9e9e9e;
-  outline: none;
-  width: 100%;
-  background-color: #e6e6e634;
-  /* border-top-left-radius: var(--small); */
-  /* border-top-right-radius: var(--small); */
-  padding: var(--small);
-  margin-bottom: var(--small);
-
-  translate: transform 0.3s ease-out;
-}
-
-
-.container_data_student input:focus {
-  /* box-shadow: 0 2px 0 #000; */
-  border-bottom: 1px solid var(--secondary--color-hover);
+  .modal_show_data_student header button {
+    font-size: 0.5rem;
+  }
 }

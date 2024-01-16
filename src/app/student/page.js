@@ -83,11 +83,6 @@ export default function Home() {
         element = element.parentElement;
       }
 
-      if (showStudent && !showStudent.contains(event.target) && !event.target.classList.contains('modal_show_data_student--open')) {
-        console.log(showStudent)
-        showStudent.classList.remove('modal_show_data_student--open');
-      }
-
       if (menuProfile && !menuProfile.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
         menuProfile.classList.remove('simple-menu--open');
       }
