@@ -22,6 +22,7 @@ html, body {
 
 @media screen and (max-width: 424px) {
 	.container_students {
+    margin-top: 8rem;
 		padding-left: var(--small);
 		padding-right: var(--small);
 	}
