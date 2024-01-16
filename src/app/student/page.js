@@ -26,6 +26,7 @@ import NavBar from '../components/modal/navBar';
 import Search from '../components/seach/search';
 import ListStudents from '../components/seach/listStudents';
 import ShowDataStudent from '../components/modal/showDataStudent';
+import ConfirmAction from '../components/modal/confirmAction';
 
 let receitasColor = 'rgba(0,128,0'; // Verde
 let despesasColor = 'rgba(255,0,0'; // Vermelho
@@ -36,12 +37,14 @@ export default function Home() {
   const menuProfileRef = useRef(null);
   const chatSuportRef = useRef(null);
   const showStudentRef = useRef(null);
+  const confirmActionRef = useRef(null);
   const [openModal, setOpenModal] = useState(null);
 
   const toggleNotificationModal = toggleModal(menuRef);
   const toggleChatSuportModal = toggleModal(chatSuportRef)
   const toggleProfileModal = toggleModal(menuProfileRef);
   const toggleShowStudentModal = toggleModal(showStudentRef, 'modal_show_data_student--open');
+  const toggleConfirmAction = toggleModal(confirmActionRef, 'modal_confirm_action--open');
 
   const [searchValue, setSearchValue] = useState('');
   const [students, setStudents] = useState([]);
@@ -113,8 +116,9 @@ export default function Home() {
       {<ChatSuport menuRef={chatSuportRef} />}
       {<NavBar />}
 
+      <ConfirmAction menuRef={confirmActionRef} toggle={{toggleConfirmAction}} />
     
-      {<ShowDataStudent menuRef={showStudentRef} />}
+      {<ShowDataStudent menuRef={showStudentRef} confirmAction={toggleConfirmAction}/>}
       <main  className="overflow-auto container_students flex flex-row min-h-screen w-screen justify-between p-24">
         <Search value={searchValue} onChange={handleSearchChange} />
         

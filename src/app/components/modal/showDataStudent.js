@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 import { toggleModal } from '@/app/hook/toggleModal';
 import Image from 'next/image';
 
-function ShowDataStudent ({ student, menuRef }) {
+function ShowDataStudent ({ student, menuRef, confirmAction }) {
     // const { student, showStudentRef } = props;
     const toggleShowStudentModal = toggleModal(menuRef, 'modal_show_data_student--open');
 
@@ -18,7 +18,7 @@ function ShowDataStudent ({ student, menuRef }) {
               <FontAwesomeIcon icon={faChevronLeft} /> Voltar
             </button>
 
-            <button onClick={toggleShowStudentModal}>
+            <button onClick={confirmAction.toggleConfirmAction}>
               <FontAwesomeIcon icon={faTrashCan} /> Inativar
             </button>
           </header>

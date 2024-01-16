@@ -286,6 +286,22 @@
   transform: scale(1.1);
 }
 
+.modal_confirm_action {
+  display: none;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal_confirm_action--open {
+  /* display: flex; */
+  transform: translateY(0);
+}
+
 
 @media screen and (max-height: 1537px) {
   .toggle_main_nav_bar {
@@ -370,3 +386,4 @@
     font-size: 0.5rem;
   }
 }
+
