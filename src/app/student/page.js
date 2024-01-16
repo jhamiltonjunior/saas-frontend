@@ -35,11 +35,13 @@ export default function Home() {
   const menuRef = useRef(null);
   const menuProfileRef = useRef(null);
   const chatSuportRef = useRef(null);
+  const showStudentRef = useRef(null);
   const [openModal, setOpenModal] = useState(null);
 
   const toggleNotificationModal = toggleModal(menuRef);
   const toggleChatSuportModal = toggleModal(chatSuportRef)
   const toggleProfileModal = toggleModal(menuProfileRef);
+  const toggleShowStudentModal = toggleModal(showStudentRef);
 
   const [searchValue, setSearchValue] = useState('');
   const [students, setStudents] = useState([]);
@@ -69,6 +71,8 @@ export default function Home() {
       const menu = menuRef.current;
       const menuProfile = menuProfileRef.current;
       const chatSuport = chatSuportRef.current;
+      const showStudent = showStudentRef.current;
+
       let element = event.target;
 
       while (element) {
@@ -77,6 +81,10 @@ export default function Home() {
         }
 
         element = element.parentElement;
+      }
+
+      if (showStudent && !showStudent.contains(event.target) && !event.target.classList.contains('container_data_student--open')) {
+        showStudent.classList.remove('container_data_student--open');
       }
 
       if (menuProfile && !menuProfile.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
@@ -116,7 +124,7 @@ export default function Home() {
         
         <div className="container_list_students w-full">
         {searchValue && (
-          <ListStudents students={students} />
+          <ListStudents students={students} toggle={toggleShowStudentModal} />
         )}
         </div>
       </main>

@@ -3,7 +3,8 @@ import { useEffect, useRef } from 'react';
 import { toggleModal } from '@/app/hook/toggleModal';
 
 function ListStudents(props) {
-  const { students: intialStudents } = props;
+  const { students: intialStudents, toggle } = props;
+
 
   const students = [...intialStudents]
 
@@ -31,7 +32,10 @@ function ListStudents(props) {
           <li
             key={student.id}
             onClick={
-              () => selectUniqueStudent(student.id)
+              () => {
+                selectUniqueStudent(student.id)
+                toggle.toggleShowStudentModal()
+              }
             }
             className="py-5 pl-3 border border-solid border-slate-200 cursor-pointer"
             >

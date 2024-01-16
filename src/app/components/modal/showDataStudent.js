@@ -4,11 +4,14 @@ import { useEffect, useRef } from 'react';
 import { toggleModal } from '@/app/hook/toggleModal';
 import Image from 'next/image';
 
-function ShowDataStudent () {
+function ShowDataStudent (props) {
+    const { student, showStudentRef } = props;
+
+
     return (
-        <section className="modal_show_data_student">
-          <header>
-            <button>
+        <section className="modal_show_data_student  menu-item">
+          <header className="mb-8">
+            <button ref={showStudentRef}>
               <FontAwesomeIcon icon={faChevronLeft} /> Voltar
             </button>
           </header>
