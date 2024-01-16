@@ -41,7 +41,7 @@ export default function Home() {
   const toggleNotificationModal = toggleModal(menuRef);
   const toggleChatSuportModal = toggleModal(chatSuportRef)
   const toggleProfileModal = toggleModal(menuProfileRef);
-  const toggleShowStudentModal = toggleModal(showStudentRef);
+  const toggleShowStudentModal = toggleModal(showStudentRef, 'modal_show_data_student--open');
 
   const [searchValue, setSearchValue] = useState('');
   const [students, setStudents] = useState([]);
@@ -83,8 +83,9 @@ export default function Home() {
         element = element.parentElement;
       }
 
-      if (showStudent && !showStudent.contains(event.target) && !event.target.classList.contains('container_data_student--open')) {
-        showStudent.classList.remove('container_data_student--open');
+      if (showStudent && !showStudent.contains(event.target) && !event.target.classList.contains('modal_show_data_student--open')) {
+        console.log(showStudent)
+        showStudent.classList.remove('modal_show_data_student--open');
       }
 
       if (menuProfile && !menuProfile.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
@@ -118,13 +119,13 @@ export default function Home() {
       {<NavBar />}
 
     
-      <ShowDataStudent />
+      {<ShowDataStudent menuRef={showStudentRef} />}
       <main  className="overflow-auto container_students flex flex-row min-h-screen w-screen justify-between p-24">
         <Search value={searchValue} onChange={handleSearchChange} />
         
         <div className="container_list_students w-full">
         {searchValue && (
-          <ListStudents students={students} toggle={toggleShowStudentModal} />
+          <ListStudents students={students} toggle={{toggleShowStudentModal}} />
         )}
         </div>
       </main>

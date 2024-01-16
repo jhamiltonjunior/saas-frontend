@@ -1,17 +1,19 @@
+'use client';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useRef } from 'react';
 import { toggleModal } from '@/app/hook/toggleModal';
 import Image from 'next/image';
 
-function ShowDataStudent (props) {
-    const { student, showStudentRef } = props;
-
+function ShowDataStudent ({ student, menuRef }) {
+    // const { student, showStudentRef } = props;
+    const toggleShowStudentModal = toggleModal(menuRef, 'modal_show_data_student--open');
 
     return (
-        <section className="modal_show_data_student  menu-item">
+        <section ref={menuRef} className="modal_show_data_student">
           <header className="mb-8">
-            <button ref={showStudentRef}>
+            <button onClick={toggleShowStudentModal}>
               <FontAwesomeIcon icon={faChevronLeft} /> Voltar
             </button>
           </header>
