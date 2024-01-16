@@ -19,3 +19,10 @@ html, body {
 		padding-right: 2.5rem;
 	}
 }
+
+@media screen and (max-width: 424px) {
+	.container_students {
+		padding-left: var(--small);
+		padding-right: var(--small);
+	}
+}

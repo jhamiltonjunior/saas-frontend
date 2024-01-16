@@ -3,14 +3,9 @@ import { selectUniqueStudent } from "../../hook/selectUniqueStudent";
 function ListStudents(props) {
   // const { students } = props;
 
-  const students = [
-    { id: 1, name: "Student 1", age: 20, img: "https://picsum.photos/200/300" },
-    { id: 2, name: "Student 2", age: 21, img: "https://picsum.photos/200/300" },
-    { id: 3, name: "Student 3", age: 22, img: "https://picsum.photos/200/300" },
-    { id: 4, name: "Student 4", age: 23, img: "https://picsum.photos/200/300" },
-  ]
+  const students = []
 
-  for (let i = 5; i <= 30; i++) {
+  for (let i = 1; i <= 35; i++) {
     students.push({
         id: i,
         name: `Student ${i}`,
