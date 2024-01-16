@@ -25,6 +25,7 @@ import MenuProfile from '../components/modal/menuProfile';
 import NavBar from '../components/modal/navBar';
 import Search from '../components/seach/search';
 import ListStudents from '../components/seach/listStudents';
+import ShowDataStudent from '../components/modal/showDataStudent';
 
 let receitasColor = 'rgba(0,128,0'; // Verde
 let despesasColor = 'rgba(255,0,0'; // Vermelho
@@ -39,6 +40,29 @@ export default function Home() {
   const toggleNotificationModal = toggleModal(menuRef);
   const toggleChatSuportModal = toggleModal(chatSuportRef)
   const toggleProfileModal = toggleModal(menuProfileRef);
+
+  const [searchValue, setSearchValue] = useState('');
+  const [students, setStudents] = useState([]);
+
+
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+
+    console.log(event.target.value); // letras que estão sendo digitadas
+
+    const students = []
+
+    for (let i = 1; i <= 35; i++) {
+      students.push({
+          id: i,
+          name: `Student ${i}`,
+          age: 20 + i,
+          img: "https://picsum.photos/200/300"
+      });
+    }
+
+    setStudents(students);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -74,6 +98,7 @@ export default function Home() {
     };
   }, []);
 
+
   return (
     <>
       {<Header onToggle={{
@@ -85,9 +110,15 @@ export default function Home() {
       {<NavBar />}
 
     
-      <main  className="container_students flex flex-row min-h-screen w-screen justify-between p-24">
-        <Search />
-        <ListStudents  />
+      <ShowDataStudent />
+      <main  className="overflow-auto container_students flex flex-row min-h-screen w-screen justify-between p-24">
+        <Search value={searchValue} onChange={handleSearchChange} />
+        
+        <div className="container_list_students w-full">
+        {searchValue && (
+          <ListStudents students={students} />
+        )}
+        </div>
       </main>
     </>
 

@@ -1,21 +1,29 @@
 import { selectUniqueStudent } from "../../hook/selectUniqueStudent";
+import { useEffect, useRef } from 'react';
+import { toggleModal } from '@/app/hook/toggleModal';
 
 function ListStudents(props) {
-  // const { students } = props;
+  const { students: intialStudents } = props;
 
-  const students = []
+  const students = [...intialStudents]
 
-  for (let i = 1; i <= 35; i++) {
-    students.push({
-        id: i,
-        name: `Student ${i}`,
-        age: 20 + i,
-        img: "https://picsum.photos/200/300"
-    });
-  }
+  // const [students, setStudents] = useState([]);
+
+  // useEffect(() => {
+  //   const newStudents = [];
+  //   for (let i = 1; i <= 35; i++) {
+  //     newStudents.push({
+  //         id: i,
+  //         name: `Student ${i}`,
+  //         age: 20 + i,
+  //         img: "https://picsum.photos/200/300"
+  //     });
+  //   }
+  //   setStudents(newStudents);
+  // }, []);
 
   return (
-    <div className="container_list_students w-full">
+    <>
       {/* <h1 class="p-2">Lista de Alunos</h1> */}
       <ul>
         {students.map((student) => (
@@ -31,7 +39,7 @@ function ListStudents(props) {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }
 

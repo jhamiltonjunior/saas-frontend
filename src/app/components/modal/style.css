@@ -295,3 +295,38 @@
     /* transform: translate(-50%, -50%); */
   }
 }
+
+.modal_show_data_student {
+  position: fixed;
+  top: 6rem;
+  background-color: #fff;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto 0;
+  max-width: 1750px;
+  max-height: 800px;
+  overflow-y: auto;
+
+  padding: var(--medium);
+
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
+  border-radius: var(--border-radius-large);
+  /* transform: translateY(-200%); Inicia o menu fora da tela */
+  transition: transform 0.3s ease-out; /* Adiciona uma transição suave */
+}
+
+.container_data_student input {
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  outline: none;
+  width: 100%;
+  background-color: #e6e6e634;
+  border-radius: var(--small);
+  padding: var(--small);
+  margin-bottom: var(--small);
+}
+
+.container_data_student input:focus {
+  /* box-shadow: 0 2px 0 #000; */
+  border-bottom: 1px solid var(--secondary--color-hover);
+}
