@@ -1,0 +1,23 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+}
+
+.container_calendar {
+	height: 87vh;
+	width: 90vw;
+}
+
+/* .calendar {
+	max-height: 100px;
+	height: 100px;
+} */
+
+/* .fc-daygrid-day {
+} */
