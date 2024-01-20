@@ -15,6 +15,12 @@ html, body {
 	width: 90vw;
 }
 
+@media screen and (min-width: 401px) {
+	.container_calendar {
+		margin-top: calc(var(--height-header) + var(--padding-medium));
+	}
+}
+
 /* .calendar {
 	max-height: 100px;
 	height: 100px;
