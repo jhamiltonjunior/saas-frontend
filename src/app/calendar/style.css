@@ -11,6 +11,7 @@ html, body {
 
 .container_calendar {
 	height: 85vh;
+	margin-top: var(--height-header);
 	width: 90vw;
 }
 
