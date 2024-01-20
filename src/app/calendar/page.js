@@ -81,7 +81,7 @@ export default function Home() {
           className="calendar" // Adicione esta linha
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
-          // height="auto"
+          height="auto"
           aspectRatio={2} 
           events={[
             { title: 'Event 1', date: '2024-01-01T16:00:00', id: 1 },
@@ -96,6 +96,8 @@ export default function Home() {
           
 
           dayMaxEventRows={2}
+
+          // deixe os eventos de click aqui
 
           dateClick={function(info) {
             alert('Data clicada: ' + info.dateStr);
