@@ -15,9 +15,44 @@ html, body {
 	width: 90vw;
 }
 
-@media screen and (max-width: 401px) {
+
+
+
+.fc-today-button,
+.fc-prev-button, .fc-next-button {
+	background-color: var(--primary--color) !important;
+	border: none !important;
+	color: white !important;
+	font-size: 1rem !important;
+	outline: none !important;
+	/* height: 2.5rem !important; */
+	/* width: 2.5rem !important; */
+}
+
+.fc-next-button {
+	margin-left: 1rem !important;
+}
+
+@media screen and (max-width: 409px) {
 	.container_calendar {
-		margin-top: calc(var(--height-header) + var(--padding-medium));
+		margin-top: calc(var(--height-header) + 2rem);
+	}
+
+	.fc-toolbar-chunk {
+		text-align: center;
+	}
+
+	.fc-today-button {
+		margin-right: 0px !important;
+		margin-bottom: 1rem !important;
+	}
+
+	.fc-today-button
+	.fc-prev-button, .fc-next-button {
+		color: white !important;
+		font-size: 1rem !important;
+		/* height: 2.5rem !important; */
+		/* width: 2.5rem !important; */
 	}
 }
 

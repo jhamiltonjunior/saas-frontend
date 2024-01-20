@@ -1,0 +1,30 @@
+.change_month_container {
+  width: 100vw;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.change_month_container--active {
+  display: flex;
+}
+
+.change_month_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #fff;
+  /* margin: 0 20px; */
+}
+
+.change_month {
+  
+}
