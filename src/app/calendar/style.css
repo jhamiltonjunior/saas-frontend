@@ -35,7 +35,7 @@ html, body {
 
 @media screen and (max-width: 409px) {
 	.container_calendar {
-		margin-top: calc(var(--height-header) + 2rem);
+		margin-top: calc(var(--height-header) + 3rem);
 	}
 
 	.fc-toolbar-chunk {
