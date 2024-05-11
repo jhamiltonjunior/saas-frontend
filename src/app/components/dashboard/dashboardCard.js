@@ -8,8 +8,6 @@ const Card = ({ title, content, id, className, icon, ...child }) => (
     <h2>{title}</h2>
     <div className="flex items-center justify-end w-full">
 
-    {console.log(child)}
-
     <div className={icon.className}>
       <FontAwesomeIcon icon={icon.icon} />
     </div>

@@ -12,17 +12,16 @@ import '../globals.css'
 import './style.css'
 
 import { faGoogle, faFacebook, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
-// import { faMoneyCheckDolla } from '@fortawesome/fontawesome-svg-core'
-// import { faMon } from '@fortawesome/react-fontawesome'
+
 import { faMoneyCheckDollar, faGraduationCap, faHeartCircleCheck } from '@fortawesome/free-solid-svg-icons'
-{/* <FontAwesomeIcon icon={faCircleCheck} /> */}
-{/* <FontAwesomeIcon icon={faPersonCircleCheck} /> */}
-{/* <FontAwesomeIcon icon={faHeartCircleCheck} /> */}
+
 import { LineChart } from '../components/charts/line';
 import { BarChart } from '../components/charts/bar';
 import Feedback from '../components/feedback/feedback';
 import MenuProfile from '../components/modal/menuProfile';
 import NavBar from '../components/modal/navBar';
+
+import FecthAPI from '@/app/service/FecthAPI';
 
 let receitasColor = 'rgba(0,128,0'; // Verde
 let despesasColor = 'rgba(255,0,0'; // Vermelho
@@ -33,6 +32,11 @@ export default function Home() {
   const menuProfileRef = useRef(null);
   const chatSuportRef = useRef(null);
   const [openModal, setOpenModal] = useState(null);
+
+  const [receive, setReceive] = useState(0);
+  const [higherReceipt, setHigherReceipt] = useState(0);
+  const [receivements, setReceivements] = useState([]);
+
 
   const toggleNotificationModal = toggleModal(menuRef);
   const toggleChatSuportModal = toggleModal(chatSuportRef)
@@ -75,6 +79,44 @@ export default function Home() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await FecthAPI.getAllRemunerationByYear();
+      try{
+        const {receivements, totalReceive} = await FecthAPI.getAllRemunerationByMonth();
+        setReceive(totalReceive);
+        setReceivements(receivements);
+        // setHigherReceipt
+      } catch (error) {
+
+        // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
+
+        console.error(error);
+        setReceive(0);
+      }
+    }
+
+    fetchData();
+
+  }, []);
+
+  useEffect(() => {
+    if (receivements.length === 0) return;
+    // console.log(receivements);
+
+    receivements.reduce((acc, value) => {
+      if (value > acc) {
+        setHigherReceipt(value);
+        return value;
+      }
+
+      return acc;
+    }, 0);
+
+  },[receivements]);
+
+  
 
 
   const data = {
@@ -136,24 +178,24 @@ export default function Home() {
       <main  className="min-h-screen w-screen justify-between p-24 card-container">
         <section className="container-minimal_card flex justify-between">
           <Card
-            title="Recebimentos do dia"
+            title="Recebimentos do Mês"
             className="minimal-card dashboard-card transition-card receivement-card" 
             icon={{icon: faMoneyCheckDollar, className: 'green-color'}} 
             id="div1" 
-            content="R$ 2.075,00" />
+            content={`R$ ${receive}`} />
 
           <Card
-            title="Total de Alunos" 
+            title="Maior Recebimento" 
             className="minimal-card transition-card dashboard-card student-card" 
             icon={{
               icon: faGraduationCap,
               className: 'primary-color '
             }} 
             id="div1" 
-            content="3.529" />
+            content={`R$ ${higherReceipt}`} />
 
           <Card
-            title="Treinos do dia" 
+            title="Despesas do Mês" 
             className="minimal-card transition-card dashboard-card training-card" 
             icon={{
               icon: faHeartCircleCheck,
@@ -163,7 +205,7 @@ export default function Home() {
             content="3.529" />
 
           <Card
-            title="Total de Alunos" 
+            title="Maior Pagamento" 
             className="minimal-card transition-card dashboard-card student-card" 
             icon={{
               icon: faGraduationCap,
@@ -176,7 +218,7 @@ export default function Home() {
 
         <section className="container-medium_card flex justify-between">
           <Card 
-            title="Ultimos Feedbacks" 
+            title="Histórico de Finanças" 
             className="medium_card feedback_card transition-card dashboard-card" 
             chart="cuador" 
             icon={faGoogle} 
