@@ -15,7 +15,6 @@ class FetchAPI {
       });
 
       const data = await response.json();
-      console.log(data)
 
       if (data.status === 'success') {
         const receivements = data.data.map((receivement) => {
@@ -53,23 +52,54 @@ class FetchAPI {
         }),
       });
 
-      const data = await response.json();
-      console.log(data)
+      const content = await response.json();
+      // console.log(content)
 
-      if (data.status === 'success') {
-        const receivements = data.data.map((receivement) => {
-          return receivement.value;
+      if (content.status === 'success') {
+        const receivementsByMonth = {};
+
+        content.data.forEach((receivement) => {
+          const monthAndYear = receivement.create_at
+            .split('T')[0]
+            .split('-')
+            .slice(0, 2)
+            .join('-');
+
+          if (!receivementsByMonth[`${monthAndYear}`])
+            receivementsByMonth[`${monthAndYear}`] = [];
+
+          receivementsByMonth[`${monthAndYear}`].push(receivement.value);
         });
 
-        const totalReceive = receivements.reduce((acc, value) => {
-          return acc + value;
-        })
+        const allMonths = {
+          '01': 'Janeiro',
+          '02': 'Fevereiro',
+          '03': 'Março',
+          '04': 'Abril',
+          '05': 'Maio',
+          '06': 'Junho',
+          '07': 'Julho',
+          '08': 'Agosto',
+          '09': 'Setembro',
+          '10': 'Outubro',
+          '11': 'Novembro',
+          '12': 'Dezembro',
+        }
 
-        console.log(totalReceive);
+        for (const month in receivementsByMonth) {
+          const monthName = allMonths[month.split('-')[1]];
+          const total = receivementsByMonth[month].reduce((acc, value) => {
+            return acc + value;
+          }, 0);
+
+          delete receivementsByMonth[month];
+          receivementsByMonth[monthName] = total;
+        }
+        // console.log(receivementsByMonth)
 
         return {
-          receivements,
-          totalReceive: totalReceive.toFixed(2).replace('.', ',')
+          labels: Object.keys(receivementsByMonth),
+          data: Object.values(receivementsByMonth)
         };
       } else {
         console.error(data);

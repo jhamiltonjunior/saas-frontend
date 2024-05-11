@@ -36,6 +36,8 @@ export default function Home() {
   const [receive, setReceive] = useState(0);
   const [higherReceipt, setHigherReceipt] = useState(0);
   const [receivements, setReceivements] = useState([]);
+  const [receivementsYearLabels, setReceivementsYearLabels] = useState([]);
+  const [receivementsYearData, setReceivementsYearData] = useState([]);
 
 
   const toggleNotificationModal = toggleModal(menuRef);
@@ -116,17 +118,36 @@ export default function Home() {
 
   },[receivements]);
 
-  
+  useEffect(() => {
+    const getAllRemunerationByYear = async () => {
+      try{
+        // const {receivements, totalReceive} = await FecthAPI.getAllRemunerationByYear();
+        const remunerations = await FecthAPI.getAllRemunerationByYear();
+        setReceivementsYearLabels(remunerations.labels)
+        setReceivementsYearData(remunerations.data)
+      } catch (error) {
+
+        // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
+
+        console.error(error);
+        setReceivementsYearLabels([])
+        setReceivementsYearData([])
+      }
+    }
+
+    getAllRemunerationByYear();
+
+  }, []);
 
 
   const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: receivementsYearLabels,
     datasets: [
       {
         label: 'My First dataset',
         backgroundColor: 'rgba(68, 76, 230,0.6)',
         borderColor: 'rgba(68, 76, 230,1)',
-        data: [5, 8 , 6, 9, 7, 10, 5]
+        data: receivementsYearData
       },
       {
         label: 'My First dataset',
