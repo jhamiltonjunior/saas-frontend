@@ -37,6 +37,7 @@ export default function Home() {
   const [higherReceipt, setHigherReceipt] = useState(0);
   const [receivements, setReceivements] = useState([]);
   const [receivementsYearLabels, setReceivementsYearLabels] = useState([]);
+  const [expensesYearData, setExpensesYearData] = useState([]);
   const [receivementsYearData, setReceivementsYearData] = useState([]);
 
 
@@ -140,21 +141,45 @@ export default function Home() {
   }, []);
 
 
+  useEffect(() => {
+    const getAllExpenseByYear = async () => {
+      try{
+        // const {receivements, totalReceive} = await FecthAPI.getAllExpenseByYear();
+        const Expense = await FecthAPI.getAllExpenseByYear();
+        // setExpensesYearLabels(Expense.labels)
+        setExpensesYearData(Expense.data)
+      } catch (error) {
+
+        // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
+
+        console.error(error);
+        // setExpensesYearLabels([])
+        setExpensesYearData([])
+      }
+    }
+
+    getAllExpenseByYear();
+
+  }, []);
+
+
   const data = {
+    // eu preciso fazer a junção dos meses talvez uma consulta so para facilitaar ou
+    //  ver se a biblioteca tem alguma função para isso
     labels: receivementsYearLabels,
     datasets: [
       {
-        label: 'My First dataset',
+        label: 'Recebimentos',
         backgroundColor: 'rgba(68, 76, 230,0.6)',
         borderColor: 'rgba(68, 76, 230,1)',
         data: receivementsYearData
       },
       {
-        label: 'My First dataset',
+        label: 'Despesas',
         backgroundColor: 'rgba(255,50,50,0.6)',
         borderColor: 'rgba(255,50,50,1)',
-        data: [2, 6, 2, 7, 6, 3, 3]
-      }
+        data: expensesYearData
+      },
     ]
   };
 
@@ -172,7 +197,7 @@ export default function Home() {
         label: 'Despesas',
         backgroundColor: despesasColor + ', 0)',
         borderColor: despesasColor + ', 0.8)',
-        data: [2, 2, 1, 4, 2, 1, 3],
+        data: [2, -2, 1, 4, 2, 1, 3],
         tension: 0.09
       },
       {
@@ -206,7 +231,7 @@ export default function Home() {
             content={`R$ ${receive}`} />
 
           <Card
-            title="Maior Recebimento" 
+            title="Saldo" 
             className="minimal-card transition-card dashboard-card student-card" 
             icon={{
               icon: faGraduationCap,
@@ -223,17 +248,17 @@ export default function Home() {
               className: 'tertiary-color'
             }} 
             id="div1" 
-            content="3.529" />
+            content="R$ 2.423,98" />
 
           <Card
-            title="Maior Pagamento" 
+            title="Faturas" 
             className="minimal-card transition-card dashboard-card student-card" 
             icon={{
               icon: faGraduationCap,
               className: 'primary-color '
             }} 
             id="div1" 
-            content="3.529" />
+            content="$R 3.529,04" />
 
         </section>
 
