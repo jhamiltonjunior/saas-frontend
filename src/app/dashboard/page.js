@@ -35,10 +35,15 @@ export default function Home() {
 
   const [receive, setReceive] = useState(0);
   const [higherReceipt, setHigherReceipt] = useState(0);
+  const [expenseMonth, setExpenseMonth] = useState(0);
+  const [balanceMonth, setBalanceMonth] = useState(0);
+
   const [receivements, setReceivements] = useState([]);
-  const [receivementsYearLabels, setReceivementsYearLabels] = useState([]);
+  const [comparationYearLabels, setComparationYearLabels] = useState([]);
   const [expensesYearData, setExpensesYearData] = useState([]);
   const [receivementsYearData, setReceivementsYearData] = useState([]);
+  const [receivementsData, setReceivementsData] = useState([]);
+  const [expenseData, setExpensesData] = useState([]);
 
 
   const toggleNotificationModal = toggleModal(menuRef);
@@ -124,14 +129,16 @@ export default function Home() {
       try{
         // const {receivements, totalReceive} = await FecthAPI.getAllRemunerationByYear();
         const remunerations = await FecthAPI.getAllRemunerationByYear();
-        setReceivementsYearLabels(remunerations.labels)
-        setReceivementsYearData(remunerations.data)
+        // setReceivementsYearLabels(remunerations.labels)
+        // setReceivementsYearData(remunerations.data)
+
+        setReceivementsData(remunerations.receivementsByMonth)
       } catch (error) {
 
         // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
 
         console.error(error);
-        setReceivementsYearLabels([])
+        setComparationYearLabels([])
         setReceivementsYearData([])
       }
     }
@@ -145,15 +152,18 @@ export default function Home() {
     const getAllExpenseByYear = async () => {
       try{
         // const {receivements, totalReceive} = await FecthAPI.getAllExpenseByYear();
-        const Expense = await FecthAPI.getAllExpenseByYear();
+        const expense = await FecthAPI.getAllExpenseByYear();
         // setExpensesYearLabels(Expense.labels)
-        setExpensesYearData(Expense.data)
+        // setExpensesYearData(expense.data)
+        setExpensesData(expense.expenseByMonth)
+
       } catch (error) {
 
         // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
 
         console.error(error);
         // setExpensesYearLabels([])
+        setComparationYearLabels([])
         setExpensesYearData([])
       }
     }
@@ -162,11 +172,70 @@ export default function Home() {
 
   }, []);
 
+  useEffect(() => {
+    const expenseNotPaid = [0];
+
+    for (const receivement in receivementsData) {
+      if (!expenseData[receivement]) {
+        expenseData[receivement] = 0
+      }
+    }
+
+    console.log(expenseData)
+
+    for (const expense in expenseData) {
+      if (!receivementsData[expense]) {
+        receivementsData[expense] = 0
+      }
+
+
+
+      // if (expenseData[expense].)
+    }
+
+    // console.log(receivementsData.sort())
+
+    const months = [
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro',
+    ]
+
+    const month = new Date().getMonth();
+
+    const expenseMonth = expenseData[months[month]] || 0;
+    const receiveMonth = receivementsData[months[month]] || 0;
+
+    const balance = (receiveMonth - expenseMonth).toFixed(2);
+    
+    setBalanceMonth(String(balance).replace('.', ','))
+
+
+
+    setExpenseMonth(String(expenseMonth).replace('.', ','))
+
+    setComparationYearLabels(Object.keys(expenseData).sort((a, b) => {
+      return months.indexOf(a) - months.indexOf(b);
+    }))
+    setExpensesYearData(expenseData)
+    setReceivementsYearData(receivementsData)
+
+  }, [receivementsData, expenseData])
+
 
   const data = {
     // eu preciso fazer a junção dos meses talvez uma consulta so para facilitaar ou
     //  ver se a biblioteca tem alguma função para isso
-    labels: receivementsYearLabels,
+    labels: comparationYearLabels,
     datasets: [
       {
         label: 'Recebimentos',
@@ -238,7 +307,7 @@ export default function Home() {
               className: 'primary-color '
             }} 
             id="div1" 
-            content={`R$ ${higherReceipt}`} />
+            content={`R$ ${balanceMonth}`} />
 
           <Card
             title="Despesas do Mês" 
@@ -248,7 +317,7 @@ export default function Home() {
               className: 'tertiary-color'
             }} 
             id="div1" 
-            content="R$ 2.423,98" />
+            content={`R$ ${expenseMonth}`} />
 
           <Card
             title="Faturas" 

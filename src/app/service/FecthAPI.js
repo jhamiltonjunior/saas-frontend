@@ -98,6 +98,7 @@ class FetchAPI {
         // console.log(receivementsByMonth)
 
         return {
+          receivementsByMonth,
           labels: Object.keys(receivementsByMonth),
           data: Object.values(receivementsByMonth)
         };
@@ -123,10 +124,9 @@ class FetchAPI {
       });
 
       const content = await response.json();
-      console.log('expense', content)
 
       if (content.status === 'success') {
-        const receivementsByMonth = {};
+        const expenseByMonth = {};
 
         content.data.forEach((receivement) => {
           const monthAndYear = receivement.create_at
@@ -135,10 +135,10 @@ class FetchAPI {
             .slice(0, 2)
             .join('-');
 
-          if (!receivementsByMonth[`${monthAndYear}`])
-            receivementsByMonth[`${monthAndYear}`] = [];
+          if (!expenseByMonth[`${monthAndYear}`])
+            expenseByMonth[`${monthAndYear}`] = [];
 
-          receivementsByMonth[`${monthAndYear}`].push(receivement.value);
+          expenseByMonth[`${monthAndYear}`].push(receivement.value);
         });
 
         const allMonths = {
@@ -156,27 +156,28 @@ class FetchAPI {
           '12': 'Dezembro',
         }
 
-        for (const month in receivementsByMonth) {
+        for (const month in expenseByMonth) {
           const monthName = allMonths[month.split('-')[1]];
-          const total = receivementsByMonth[month].reduce((acc, value) => {
+          const total = expenseByMonth[month].reduce((acc, value) => {
             return acc + value;
           }, 0);
 
-          delete receivementsByMonth[month];
-          receivementsByMonth[monthName] = total;
+          delete expenseByMonth[month];
+          expenseByMonth[monthName] = total;
         }
-        console.log('expense', receivementsByMonth)
+        // console.log('expense', expenseByMonth)
 
         return {
-          labels: Object.keys(receivementsByMonth),
-          data: Object.values(receivementsByMonth)
+          expenseByMonth,
+          labels: Object.keys(expenseByMonth),
+          data: Object.values(expenseByMonth)
         };
       } else {
         console.error(data);
-        throw new Error('Error on fetchAPI.getAllRemunerationByYear');
+        throw new Error('Error on fetchAPI.getAllExpenseByYear');
       }
     } catch (error) {
-      console.error('Error on fetchAPI.getAllRemunerationByYear', error);
+      console.error('Error on fetchAPI.getAllExpenseByYear', error);
     }
   }
 };
