@@ -16,6 +16,9 @@ import {
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import MiniConfig from './miniConfig';
 import { toggleModal } from '../../hook/toggleModal';
+import Select from 'react-select'
+import Switch from '@mui/material/Switch';
+
 
 function ChatSuport({ menuRef }) {
   const miniCofingLeftRef = useRef(null);
@@ -33,7 +36,7 @@ function ChatSuport({ menuRef }) {
 
   useEffect(() => {
     const textarea = document.querySelector('.chat_suport_send_message textarea');
-    textarea.addEventListener('input', autoResize, false);
+    // textarea.addEventListener('input', autoResize, false);
 
     function autoResize() {
       this.style.height = 'auto';
@@ -44,149 +47,95 @@ function ChatSuport({ menuRef }) {
     element.scrollTop = element.scrollHeight;
   }, [])
 
+  const noSelectedDay = "darken-on-hover after:bg-[rgba(156_163_175/_0.4)] w-1/3 bg-[rgba(156_163_175/_0.35)] border-[rgba(156_163_175/_0.3)] border-b-2 border-b-gray-700 rounded-none text-slate-950"
+  const selectedDay = "darken-on-hover after:bg-[rgba(147_197_253/_0.4)] w-1/3 bg-[rgba(147_197_253/_0.3)] border-[rgba(147_197_253/_0.3)] border-b-2 border-b-blue-700 rounded-none text-slate-950"
+  const receitaSelected = "darken-on-hover after:bg-[rgba(134_239_172/_0.4)] w-1/2 bg-[rgba(134_239_172/_0.3)] border-[rgba(134_239_172/_0.3)]"
+
+  const optionsBank = [
+    { value: 'inter', label: 'Inter' },
+    { value: 'nubank', label: 'Nubank' },
+  ]
+
+  const optionsTag = [
+    { value: 'education', label: 'Educaçao' },
+    { value: 'car', label: 'Carro' },
+    { value: 'house', label: 'Casa' },
+  ]
+
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
   return (
 
-    <section ref={menuRef} className="chat-suport modal border border-solid border-slate-200">
-
-      <MiniConfig className="top-16 left-1" content={
-        <div className="flex flex-row justify-center items-center">
-          <p className="cursor-pointer m-0 w-full">
-            Abrir Whatsapp Web  <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-          </p>
-         </div>
-        }
-        toggleMenu={miniCofingLeftRef}
-      />
-
-      <MiniConfig className="top-16 right-3" content={
-        <>
-          <div className="flex flex-row justify-center items-center">
-            <p className="cursor-pointer m-0 w-full">
-              Deseja enviar com Enter? <FontAwesomeIcon icon={faToggleOn} />
-            </p>
-          </div>
-          <div className="flex flex-row justify-center items-center">
-          <p className="cursor-pointer m-0 w-full">
-            Deseja encerrar o chat? <FontAwesomeIcon icon={faTrashCan} />
-          </p>
-          </div>
-        </>
-        }
-        toggleMenu={miniCofingRightRef}
-      />
-
-      <MiniConfig className="top-16 left-3" content={
-        <>
-          <div className="flex flex-row justify-center items-center">
-            <p className="cursor-pointer m-0 w-full">
-              Deseja Anexar Arquivos?
-            </p>
-          </div>
-          <div className="flex flex-row justify-center items-center">
-            <p className="m-0 w-full">
-              Arquivos Anexados:
-            </p>
-          </div>
-          <div className="flex flex-row justify-center items-center">
-            <p className="m-0 w-full">
-              smirnofy.png
-            </p>
-          </div>
-        </>
-        }
-        toggleMenu={miniCofingAttachmentRef}
-      />
-
+    <section ref={menuRef} className="chat-suport finance-modal modal overflow-x-hidden border border-solid border-slate-200">
 
       <div className="chat_suport_header sticky top-0 flex justify-between items-center px-6">
-        <div className="font-bold" onClick={toggleMiniConfigLeft}>
-           <FontAwesomeIcon className="font-bold cursor-pointer" icon={faWhatsapp} />
-        </div>
-        
-        <h2>Suporte</h2>
 
-        <div onClick={toggleMiniConfigRight}>
-          <FontAwesomeIcon className="cursor-pointer" icon={faGear} />
-        </div>
+        <h2>Novo Registro</h2>
 
       </div>
 
       {/* simples divs para simular notificao em linha */}
 
-      <div ref={chatRef} className="chat_suport_container p-6">
-        <div className="flex justify-end w-full items-center">
-          <div className="text-start message-receiver message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black w-full">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      {/*chat_suport_container*/}
+
+      <div ref={chatRef}>
+        <form className="w-full px-4">
+          <label htmlFor="valor" className="w-full">
+            <input
+                id="valor" type="text" className="text-2xl font-medium" value="R$ 0,00" placeholder="R$ 0,00"/>
+
+          </label>
+
+          <div className="w-full gap-1 hover:border-[#141996] pb-1 mt-6 flex ">
+            <button
+                className="darken-on-hover after:bg-[rgba(252_165_165/_0.4)] w-1/2 bg-[rgba(252_165_165/_0.3)] border-[rgba(252_165_165/_0.3)] border-b-2 border-b-red-700 rounded-none text-slate-950">
+              Despesa
+            </button>
+            <button
+                className="darken-on-hover after:bg-[rgba(134_239_172/_0.5)] w-1/2 bg-[rgba(156_163_175/_0.3)] border-[rgba(156_163_175/_0.3)] border-b-2 border-b-gray-700 rounded-none text-slate-950">
+              Receita
+            </button>
           </div>
-        </div>
 
-        <div className="flex justify-start w-full items-center">
-          <div className="text-start message-sender message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black w-full">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-        </div>
+          <section className="w-full gap-1 hover:border-[#141996] pb-1 mt-6 flex ">
 
-        <div className="flex justify-start w-full items-center">
-          <div className="text-start message-sender message-chat_suport border border-solid flex flex-col justify-between w-2/4">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black w-full">Lorem ipsum dolor sit.</p>
-          </div>
-        </div>
-
-        <div className="flex justify-end w-full items-center">
-          <div className="text-start message-receiver message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black w-full">
-              Lorem ipsum dolor sit amet consecteisicing elit
-              Lorem ipsum dolor sit amet consectetur isicing elit.
-              Lorem ipsum dolor sittetur adipisicing elit.
-              Lorem  amet consecteturicing elit.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex justify-end w-full items-center">
-          <div className="text-start message-receiver message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black w-full">
-              Loremm dolor sit amet consectetur adipisicing elit
-              Lorem ipsum dolor sit amet consectetur icing elit.
-              Lorem iconsectetur adipisicing elit.
-              Lorem ipsum dolor sit amesectetur adipisicing elit.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex justify-end w-full items-center">
-          <div className="text-start message-receiver message-chat_suport border border-solid flex flex-col justify-between w-2/4 items-end">
-            {/* <p className="text-sm font-semibold">Nome do usuario</p> */}
-            <p className="text-black w-full">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Lorem ipsum dolornsectetur adipisicing elit.
-              Lorem ipsum dolor dipisicing elit.
-              Lorem ipsum dolor sit ameipisicing elit.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="chat_suport_send_message z-50">
-        <form onSubmit={onSumitForm} className="flex justify-between p-6">
-          <textarea className=" border-slate-200 p-2 w-full text-chat" type="text" placeholder="Digite sua mensagem" ></textarea>
-
-          <div className="container_writer_message flex justify-between w-full border-b border-l border-r border-slate-200 pt-6 pb-2 pl-2 pr-2">
-            <div className="text-slate-800">
-              <button className="reset_button">
-                <FontAwesomeIcon icon={faFaceSmile} />
-              </button>
-              <button className="reset_button" onClick={toggleMiniConfigAttachment}>
-                <FontAwesomeIcon icon={faPaperclip} />
-              </button>
+            <div className="w-full gap-1 flex justify-between items-center px-6">
+              <p>Foi pago</p>
+              <Switch {...label} defaultChecked color="error" />
             </div>
-            <button className="send-message bg-primary-color text-white p-2 rounded-md w-1/5">
-              <FontAwesomeIcon icon={faPaperPlane} />
+
+          </section>
+
+          <div className="w-full gap-1 border-b border-[#444CE6] hover:border-[#141996] pb-1 mt-6 flex ">
+            <button
+                className={selectedDay}>
+              Hoje
+            </button>
+            <button
+                className={noSelectedDay}>
+              Ontem
+            </button>
+
+            <button
+                className={noSelectedDay}>
+              Outro dia
+            </button>
+          </div>
+
+          <label htmlFor="description" className="w-full mt-6">
+            <input id="description" type="text" className="font-medium" placeholder="Descrição"/>
+
+          </label>
+
+          <Select options={optionsBank} placeholder="Escolha um banco" className="w-full text-left mt-6"/>
+
+          <Select options={optionsTag} placeholder="Escolha uma Tag" styles="border: none; "
+                  className="w-full text-left mt-6 rounded-none "/>
+
+          <div className="w-full gap-1 pb-6 mt-6 flex justify-center ">
+            <button
+                className="w-1/2 bg-[rgba(147_197_253/_0.8)] border-[rgba(147_197_253/_0.3)] border-b-2 border-b-blue-700 rounded-none text-slate-950">
+              Salvar
             </button>
           </div>
         </form>

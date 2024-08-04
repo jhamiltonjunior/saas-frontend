@@ -1,8 +1,14 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
 
 * {
+	font-family: "Nunito", sans-serif;
 	box-sizing: border-box;
+}
+
+p {
+	font-family: "Nunito", sans-serif;
 }
 
 html, body {
@@ -88,11 +94,21 @@ form {
 }
 
 input {
-	background-color: #eee;
+	background-color: transparent;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
+	border-bottom: 1px solid #444CE6;
+}
+
+input:hover {
+	border-bottom: 1px solid #141996;
+}
+
+input:focus {
+	outline: none;
+	background-color: #eee;
 }
 
 .container {
@@ -474,6 +490,33 @@ DASHBOARD
 	justify-content: space-between;
 
 }
+.darken-on-hover {
+	position: relative;
+	overflow: hidden;
+	/*background-color: #3498db;*/
+	/*color: #fff;*/
+	/*padding: 20px;*/
+	/*margin: 10px;*/
+	transition: color 0.3s;
+}
+
+.darken-on-hover::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/*background: rgba(0, 0, 0, 0.2); !* Ajuste a opacidade conforme necessário *!*/
+	opacity: 0;
+	transition: opacity 0.3s;
+	pointer-events: none;
+}
+
+.darken-on-hover:hover::after {
+	opacity: .3;
+}
+
 
 @media screen and (max-width: 1536px) {
   .card-container {

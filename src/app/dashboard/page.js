@@ -13,7 +13,7 @@ import './style.css'
 
 import { faGoogle, faFacebook, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 
-import { faMoneyCheckDollar, faGraduationCap, faHeartCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import {faMoneyCheckDollar, faGraduationCap, faHeartCircleCheck, faGear} from '@fortawesome/free-solid-svg-icons'
 
 import { LineChart } from '../components/charts/line';
 import { BarChart } from '../components/charts/bar';
@@ -22,6 +22,11 @@ import MenuProfile from '../components/modal/menuProfile';
 import NavBar from '../components/modal/navBar';
 
 import FecthAPI from '@/app/service/FecthAPI';
+import Message from '../components/message';
+import { removeMessageImmediately } from '../utils/removeMessage';
+import { notificationMessage } from '../utils/notificationMessage';
+import ManageFinance from "@/app/components/modal/ManageFinance";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 let receitasColor = 'rgba(0,128,0'; // Verde
 let despesasColor = 'rgba(255,0,0'; // Vermelho
@@ -32,6 +37,7 @@ export default function Home() {
   const menuProfileRef = useRef(null);
   const chatSuportRef = useRef(null);
   const [openModal, setOpenModal] = useState(null);
+  const manageRef = useRef(null);
 
   const [receive, setReceive] = useState(0);
   const [higherReceipt, setHigherReceipt] = useState(0);
@@ -44,17 +50,46 @@ export default function Home() {
   const [receivementsYearData, setReceivementsYearData] = useState([]);
   const [receivementsData, setReceivementsData] = useState([]);
   const [expenseData, setExpensesData] = useState([]);
+  const [mostrarMensagem, setMostrarMensagem] = useState([]);
+  const [timeouts, setTimeouts] = useState({});
+  const [message, setMessage] = useState({});
+  const showRef = useRef(0); // Create a useRef hook to store the value of 'show'
 
 
   const toggleNotificationModal = toggleModal(menuRef);
   const toggleChatSuportModal = toggleModal(chatSuportRef)
   const toggleProfileModal = toggleModal(menuProfileRef);
+  const toggleManageRef = toggleModal(manageRef);
+
+  // ver pq exibe a mensaaaagem mais de uma vez 
+  // estilizr a mensagem
+
+  let show = 0;
+  useEffect(() => {
+
+    console.log(message)
+    if (!Object.keys(message).length) return;
+
+    for (const msg in message) {
+      showRef.current += message[msg].show; // Update the value of 'show' using the useRef hook
+      if (showRef.current > 1) {
+        return removeMessageImmediately(msg.id, setMostrarMensagem);
+      }
+    }
+
+    if (showRef.current > 1) return removeMessageImmediately(message.id, setMostrarMensagem);
+
+    notificationMessage(setMostrarMensagem, setTimeouts, message);
+  }, [message]);
+
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       const menu = menuRef.current;
       const menuProfile = menuProfileRef.current;
       const chatSuport = chatSuportRef.current;
+      const manage = toggleManageRef.current;
 
       let element = event.target;
 
@@ -77,6 +112,11 @@ export default function Home() {
       if (menu && !menu.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
         menu.classList.remove('simple-menu--open');
       }
+
+      if (manage && !manage.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
+        manage.classList.remove('simple-menu--open');
+      }
+
     };
   
     // Adiciona o ouvinte de eventos ao documento
@@ -89,7 +129,11 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
+    // const fetchData =
+    //
+    // fetchData();
+
+    (async () => {
       await FecthAPI.getAllRemunerationByYear();
       try{
         const {receivements, totalReceive} = await FecthAPI.getAllRemunerationByMonth();
@@ -99,13 +143,17 @@ export default function Home() {
       } catch (error) {
 
         // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
+        setMessage({
+          text: 'Erro ao buscar dados 1',
+          id: Date.now(),
+          bg: '#ff0000',
+          show: 1,
+        })
 
         console.error(error);
         setReceive(0);
       }
-    }
-
-    fetchData();
+    })()
 
   }, []);
 
@@ -125,7 +173,7 @@ export default function Home() {
   },[receivements]);
 
   useEffect(() => {
-    const getAllRemunerationByYear = async () => {
+    (async () => {
       try{
         // const {receivements, totalReceive} = await FecthAPI.getAllRemunerationByYear();
         const remunerations = await FecthAPI.getAllRemunerationByYear();
@@ -137,19 +185,24 @@ export default function Home() {
 
         // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
 
+        setMessage({
+          text: 'Erro ao buscar dados! 2',
+          id: Date.now(),
+          bg: '#ff0000',
+          show: 1,
+        })
+
         console.error(error);
         setComparationYearLabels([])
         setReceivementsYearData([])
       }
-    }
-
-    getAllRemunerationByYear();
+    })()
 
   }, []);
 
 
   useEffect(() => {
-    const getAllExpenseByYear = async () => {
+    (async () => {
       try{
         // const {receivements, totalReceive} = await FecthAPI.getAllExpenseByYear();
         const expense = await FecthAPI.getAllExpenseByYear();
@@ -161,14 +214,19 @@ export default function Home() {
 
         // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
 
+        setMessage({
+          text: 'Erro ao buscar dados 3',
+          id: Date.now(),
+          bg: '#ff0000',
+          show: 1,
+        })
+
         console.error(error);
         // setExpensesYearLabels([])
         setComparationYearLabels([])
         setExpensesYearData([])
       }
-    }
-
-    getAllExpenseByYear();
+    })()
 
   }, []);
 
@@ -281,16 +339,22 @@ export default function Home() {
 
   return (
     <>
-      {<Header onToggle={{
-        toggleNotificationModal, toggleProfileModal, toggleChatSuportModal
-      }} />}
-      {<Nofity menuRef={menuRef} />}
-      {<MenuProfile menuRef={menuProfileRef} />}
+      {/*{<Header onToggle={{*/}
+      {/*  toggleNotificationModal, toggleProfileModal, toggleChatSuportModal*/}
+      {/*}} />}*/}
+      {/*{<Nofity menuRef={menuRef} />}*/}
+      {/*{<MenuProfile menuRef={menuProfileRef} />}*/}
       {<ChatSuport menuRef={chatSuportRef} />}
-      {<NavBar />}
+      {/*{<NavBar />}*/}
+
+      <button onClick={toggleChatSuportModal} className="fixed right-2 bottom-2 z-50 p-3 py-2 text-lg rounded hover:transform">
+        <FontAwesomeIcon className="cursor-pointer" icon={faGear} />
+      </button>
+
+      {/*<ManageFinance menuRef={manageRef} />*/}
 
     
-      <main  className="min-h-screen w-screen justify-between p-24 card-container">
+      <main className="min-h-screen w-screen justify-between p-24 pt-4 card-container">
         <section className="container-minimal_card flex justify-between">
           <Card
             title="Recebimentos do Mês"
@@ -354,11 +418,20 @@ export default function Home() {
             content="This is Card 1" />
         </section>
       </main>
+
+      <div className="message-container">
+        {mostrarMensagem.map((message) => (
+          <Message
+          key={message.id}
+          message={message.text}
+          setMostrarMensagem={setMostrarMensagem}
+          timeouts={timeouts}
+          id={message.id} 
+          backgroundColor={message.bg} 
+          />
+        ))}
+      </div>
     </>
 
   );
-}
-
-function labels () {
-  
 }

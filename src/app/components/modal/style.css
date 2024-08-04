@@ -17,8 +17,10 @@
 
 .simple-menu, .menu-profile, .chat-suport {
   top: var(--height-header);
-  right: 4rem;
+  right: 40rem;
 }
+
+
 
 .menu-profile {
   max-width: 300px;
@@ -28,6 +30,15 @@
   max-width: 600px;
   max-height: 800px;
   background-color: var(--background);
+}
+
+.finance-modal {
+  right: initial;
+  width: 100%;
+  max-width: 600px;
+
+  height: auto;
+  max-height: 800px;
 }
 
 .simple-menu h2, .menu-profile h2, .modal h2 {
