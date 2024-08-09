@@ -33,12 +33,12 @@ function ChatSuport({ menuRef }) {
 
   const { register, watch, setValue } = useForm()
 
-  const allInput = watch('value');
+  const valorDoRegistro = watch('value');
 
     useEffect(() => {
-        console.log(allInput)
+        console.log(valorDoRegistro)
 
-        if (!allInput)
+        if (!valorDoRegistro)
             return
         const maskCurrency = (valor, locale = 'pt-BR', currency = 'BRL') => {
             return new Intl.NumberFormat(locale, {
@@ -48,7 +48,7 @@ function ChatSuport({ menuRef }) {
         }
 
         const mascaraMoeda = () => {
-            const onlyDigits = allInput
+            const onlyDigits = valorDoRegistro
                 .split("")
                 .filter(s => /\d/.test(s))
                 .join("")
@@ -61,7 +61,7 @@ function ChatSuport({ menuRef }) {
 
         mascaraMoeda()
 
-    }, [allInput, setValue]);
+    }, [valorDoRegistro, setValue]);
 
   useEffect(() => {
     console.log(registerType)
@@ -69,15 +69,18 @@ function ChatSuport({ menuRef }) {
     let f = ''
     const subscription = watch((value, { name, type }) =>{
         // f = parseFloat(value.value).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+        const onlyDigits = value.value.split('')
+            .filter(s => /\d/.test(s))
+            .join('')
+
+        const finalValue = onlyDigits.slice(0, -2) + '.' + onlyDigits.slice(-2)
 
         setRegisterType({
           ...registerType,
-          ...value
+          ...value,
+            value: finalValue
         })
     })
-
-    // setValue('value', f)
-    return
   }, [registerType, setValue, watch])
 
   const toggleMiniConfigLeft = toggleModal(miniCofingLeftRef, 'mini_config--open');
@@ -87,7 +90,7 @@ function ChatSuport({ menuRef }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // console.log(registerType)
+    console.log(registerType)
     // console.log(e)
   }
 
@@ -146,7 +149,8 @@ function ChatSuport({ menuRef }) {
           <div className="w-full gap-1 hover:border-[#141996] pb-1 mt-6 flex ">
             <button
                 className="darken-on-hover after:bg-[rgba(252_165_165/_0.4)] w-1/2 bg-[rgba(252_165_165/_0.3)] border-[rgba(252_165_165/_0.3)] border-b-2 border-b-red-700 rounded-none text-slate-950"
-                onClick={() => {
+                onClick={(e) => {
+                    e.preventDefault()
                   document.getElementById('tipo_registro').innerText = 'Foi pago';
 
                   setRegisterType({
@@ -160,6 +164,7 @@ function ChatSuport({ menuRef }) {
             <button
                 className="darken-on-hover after:bg-[rgba(134_239_172/_0.5)] w-1/2 bg-[rgba(156_163_175/_0.3)] border-[rgba(156_163_175/_0.3)] border-b-2 border-b-gray-700 rounded-none text-slate-950"
                 onClick={(e) => {
+                    e.preventDefault()
                   // console.log(e.currentTarget.classList);
 
                   e.currentTarget.classList.add(
@@ -208,6 +213,7 @@ function ChatSuport({ menuRef }) {
             <button
                 className={selectedDay}
                 onClick={(e) => {
+                    e.preventDefault()
 
                   const date = new Date()
                   date.setDate(date.getDate() - 1)
@@ -223,6 +229,7 @@ function ChatSuport({ menuRef }) {
             <button
                 className={noSelectedDay}
                 onClick={(e) => {
+                    e.preventDefault()
 
                   const date = new Date()
                   date.setDate(date.getDate() - 2)
@@ -238,6 +245,7 @@ function ChatSuport({ menuRef }) {
             <button
                 className={noSelectedDay}
                 onClick={(e) => {
+                    e.preventDefault()
 
                   // precisa chamar uma funcao assincrona puxando um modal com full calendar, para que o user escolha a data que ele quiser
 
@@ -277,7 +285,7 @@ function ChatSuport({ menuRef }) {
                   className="w-full text-left mt-6 rounded-none "/>
 
           <div className="w-full gap-1 pb-6 mt-6 flex justify-center ">
-            <button
+            <button type={"submit"}
                 className="w-1/2 bg-[rgba(147_197_253/_0.8)] border-[rgba(147_197_253/_0.3)] border-b-2 border-b-blue-700 rounded-none text-slate-950">
               Salvar
             </button>
