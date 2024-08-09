@@ -31,23 +31,54 @@ function ChatSuport({ menuRef }) {
     registro_efetivado: true
   });
 
-  const { register, watch } = useForm()
+  const { register, watch, setValue } = useForm()
 
-  // const allInput = watch(valor);
+  const allInput = watch('value');
+
+    useEffect(() => {
+        console.log(allInput)
+
+        if (!allInput)
+            return
+        const maskCurrency = (valor, locale = 'pt-BR', currency = 'BRL') => {
+            return new Intl.NumberFormat(locale, {
+                style: 'currency',
+                currency
+            }).format(valor)
+        }
+
+        const mascaraMoeda = () => {
+            const onlyDigits = allInput
+                .split("")
+                .filter(s => /\d/.test(s))
+                .join("")
+                .padStart(3, "0")
+            const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2)
+            const v = maskCurrency(digitsFloat)
+
+            setValue('value', v)
+        }
+
+        mascaraMoeda()
+
+    }, [allInput, setValue]);
 
   useEffect(() => {
-
     console.log(registerType)
 
-    const subscription = watch((value, { name, type }) =>
+    let f = ''
+    const subscription = watch((value, { name, type }) =>{
+        // f = parseFloat(value.value).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
 
         setRegisterType({
           ...registerType,
           ...value
         })
-    )
-    return () => subscription.unsubscribe()
-  }, [watch, registerType])
+    })
+
+    // setValue('value', f)
+    return
+  }, [registerType, setValue, watch])
 
   const toggleMiniConfigLeft = toggleModal(miniCofingLeftRef, 'mini_config--open');
   const toggleMiniConfigRight = toggleModal(miniCofingRightRef, 'mini_config--open');
