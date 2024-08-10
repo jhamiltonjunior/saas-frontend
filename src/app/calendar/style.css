@@ -20,11 +20,11 @@ html, body {
 
 .fc-today-button,
 .fc-prev-button, .fc-next-button {
-	background-color: var(--primary--color) !important;
-	border: none !important;
-	color: white !important;
-	font-size: 1rem !important;
-	outline: none !important;
+	/*background-color: var(--primary--color) !important;*/
+	/*border: none !important;*/
+	/*color: white !important;*/
+	/*font-size: 1rem !important;*/
+	/*outline: none !important;*/
 	/* height: 2.5rem !important; */
 	/* width: 2.5rem !important; */
 }

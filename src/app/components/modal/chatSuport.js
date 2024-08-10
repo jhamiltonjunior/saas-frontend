@@ -19,9 +19,11 @@ import { toggleModal } from '../../hook/toggleModal';
 import Select from 'react-select'
 import Switch from '@mui/material/Switch';
 import {useForm} from "react-hook-form";
+import Calendar from "@/app/components/modal/Calendar";
 
 
-function ChatSuport({ menuRef }) {
+function ChatSuport({ menuRef, openCalendar }) {
+  const calendarRef = useRef(null);
   const miniCofingLeftRef = useRef(null);
   const miniCofingRightRef = useRef(null);
   const miniCofingAttachmentRef = useRef(null);
@@ -34,6 +36,33 @@ function ChatSuport({ menuRef }) {
   const { register, watch, setValue } = useForm()
 
   const valorDoRegistro = watch('value');
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            // const menu = menuRef.current;
+            const calendar = calendarRef.current
+
+            let element = event.target;
+
+            while (element) {
+                if (element.classList.contains('menu-item')) {
+                    return
+                }
+
+                element = element.parentElement;
+            }
+
+            if (calendar && !calendar.contains(event.target) && !event.target.classList.contains('simple-menu--open')) {
+                calendar.classList.remove('simple-menu--open');
+            }
+
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     useEffect(() => {
         console.log(valorDoRegistro)
@@ -86,6 +115,7 @@ function ChatSuport({ menuRef }) {
   const toggleMiniConfigLeft = toggleModal(miniCofingLeftRef, 'mini_config--open');
   const toggleMiniConfigRight = toggleModal(miniCofingRightRef, 'mini_config--open');
   const toggleMiniConfigAttachment = toggleModal(miniCofingAttachmentRef, 'mini_config--open');
+  const toggleCalendarModal = toggleModal(calendarRef, 'calendar--open');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,19 +123,6 @@ function ChatSuport({ menuRef }) {
     console.log(registerType)
     // console.log(e)
   }
-
-  useEffect(() => {
-    const textarea = document.querySelector('.chat_suport_send_message textarea');
-    // textarea.addEventListener('input', autoResize, false);
-
-    function autoResize() {
-      this.style.height = 'auto';
-      this.style.height = this.scrollHeight + 'px';
-    }
-
-    const element = chatRef.current;
-    element.scrollTop = element.scrollHeight;
-  }, [])
 
   const noSelectedDay = "darken-on-hover after:bg-[rgba(156_163_175/_0.4)] w-1/3 bg-[rgba(156_163_175/_0.35)] border-[rgba(156_163_175/_0.3)] border-b-2 border-b-gray-700 rounded-none text-slate-950"
   const selectedDay = "darken-on-hover after:bg-[rgba(147_197_253/_0.4)] w-1/3 bg-[rgba(147_197_253/_0.3)] border-[rgba(147_197_253/_0.3)] border-b-2 border-b-blue-700 rounded-none text-slate-950"
@@ -125,175 +142,179 @@ function ChatSuport({ menuRef }) {
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
   return (
+    <>
+        {/*<Calendar menuRef={calendarRef} />*/}
 
-    <section ref={menuRef} className="chat-suport finance-modal modal overflow-x-hidden border border-solid border-slate-200">
+        <section ref={menuRef} className="chat-suport finance-modal modal overflow-x-hidden border border-solid border-slate-200">
 
-      <div className="chat_suport_header sticky top-0 flex justify-between items-center px-6">
+            <div className="chat_suport_header sticky top-0 flex justify-between items-center px-6">
 
-        <h2>Novo Registro</h2>
+                <h2>Novo Registro</h2>
 
-      </div>
-
-      {/* simples divs para simular notificao em linha */}
-
-      {/*chat_suport_container*/}
-
-      <div ref={chatRef}>
-        <form className="w-full px-4" onSubmit={handleSubmit}>
-          <label htmlFor="valor" className="w-full">
-            <input
-                id="valor" type="text" {...register('value')} className="text-2xl font-medium" placeholder="R$ 0,00"/>
-
-          </label>
-
-          <div className="w-full gap-1 hover:border-[#141996] pb-1 mt-6 flex ">
-            <button
-                className="darken-on-hover after:bg-[rgba(252_165_165/_0.4)] w-1/2 bg-[rgba(252_165_165/_0.3)] border-[rgba(252_165_165/_0.3)] border-b-2 border-b-red-700 rounded-none text-slate-950"
-                onClick={(e) => {
-                    e.preventDefault()
-                  document.getElementById('tipo_registro').innerText = 'Foi pago';
-
-                  setRegisterType({
-                    ...registerType,
-                    tipo_registro: 'despesa'
-                  })
-                }}
-            >
-              Despesa
-            </button>
-            <button
-                className="darken-on-hover after:bg-[rgba(134_239_172/_0.5)] w-1/2 bg-[rgba(156_163_175/_0.3)] border-[rgba(156_163_175/_0.3)] border-b-2 border-b-gray-700 rounded-none text-slate-950"
-                onClick={(e) => {
-                    e.preventDefault()
-                  // console.log(e.currentTarget.classList);
-
-                  e.currentTarget.classList.add(
-                      'darken-on-hover',
-                      'after:bg-[rgba(134_239_172/_0.4)]',
-                      'bg-[rgba(134_239_172/_0.3)]',
-                      'border-[rgba(134_239_172/_0.3)]',
-                      'border-b-green-700'
-                      );
-                  document.getElementById('tipo_registro').innerText = 'Foi recebido';
-
-                  setRegisterType({
-                    ...registerType,
-                    tipo_registro: 'receita'
-                  })
-                }}
-            >
-              Receita
-            </button>
-          </div>
-
-          <section className="w-full gap-1 hover:border-[#141996] pb-1 mt-6 flex ">
-
-            <div className="w-full gap-1 flex justify-between items-center px-6">
-              <p id="tipo_registro">Foi pago</p>
-              {
-                registerType?.tipo_registro === 'receita' ? (
-                    <Switch {...label} defaultChecked onChange={(e) => {
-                      setRegisterType({
-                        ...registerType,
-                        registro_efetivado: e.target.checked
-                      })
-                    }} color="success" />
-                ) : <Switch {...label} defaultChecked onChange={(e) => {
-                  setRegisterType({
-                    ...registerType,
-                    registro_efetivado: e.target.checked
-                  })
-                }} color="error" />
-              }
             </div>
 
-          </section>
+            {/* simples divs para simular notificao em linha */}
 
-          <div className="w-full gap-1 border-b border-[#444CE6] hover:border-[#141996] pb-1 mt-6 flex ">
-            <button
-                className={selectedDay}
-                onClick={(e) => {
-                    e.preventDefault()
+            {/*chat_suport_container*/}
 
-                  const date = new Date()
-                  date.setDate(date.getDate() - 1)
+            <div ref={chatRef}>
+                <form className="w-full px-4" onSubmit={handleSubmit}>
+                    <label htmlFor="valor" className="w-full">
+                        <input
+                            id="valor" type="text" {...register('value')} style={{backgroundColor: 'transparent'}} className="text-2xl font-medium" placeholder="R$ 0,00"/>
 
-                  setRegisterType({
-                    ...registerType,
-                    quando_ocorreu: date.toISOString()
-                  })
-                }}
-            >
-              Hoje
-            </button>
-            <button
-                className={noSelectedDay}
-                onClick={(e) => {
-                    e.preventDefault()
+                    </label>
 
-                  const date = new Date()
-                  date.setDate(date.getDate() - 2)
+                    <div className="w-full gap-1 hover:border-[#141996] pb-1 mt-6 flex ">
+                        <button
+                            className="darken-on-hover after:bg-[rgba(252_165_165/_0.4)] w-1/2 bg-[rgba(252_165_165/_0.3)] border-[rgba(252_165_165/_0.3)] border-b-2 border-b-red-700 rounded-none text-slate-950"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                document.getElementById('tipo_registro').innerText = 'Foi pago';
 
-                  setRegisterType({
-                    ...registerType,
-                    quando_ocorreu: date.toISOString()
-                  })
-                }}>
-              Ontem
-            </button>
+                                setRegisterType({
+                                    ...registerType,
+                                    tipo_registro: 'despesa'
+                                })
+                            }}
+                        >
+                            Despesa
+                        </button>
+                        <button
+                            className="darken-on-hover after:bg-[rgba(134_239_172/_0.5)] w-1/2 bg-[rgba(156_163_175/_0.3)] border-[rgba(156_163_175/_0.3)] border-b-2 border-b-gray-700 rounded-none text-slate-950"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                // console.log(e.currentTarget.classList);
 
-            <button
-                className={noSelectedDay}
-                onClick={(e) => {
-                    e.preventDefault()
+                                e.currentTarget.classList.add(
+                                    'darken-on-hover',
+                                    'after:bg-[rgba(134_239_172/_0.4)]',
+                                    'bg-[rgba(134_239_172/_0.3)]',
+                                    'border-[rgba(134_239_172/_0.3)]',
+                                    'border-b-green-700'
+                                );
+                                document.getElementById('tipo_registro').innerText = 'Foi recebido';
 
-                  // precisa chamar uma funcao assincrona puxando um modal com full calendar, para que o user escolha a data que ele quiser
+                                setRegisterType({
+                                    ...registerType,
+                                    tipo_registro: 'receita'
+                                })
+                            }}
+                        >
+                            Receita
+                        </button>
+                    </div>
 
-                  setRegisterType({
-                    ...registerType,
-                    quando_ocorreu: '2024-04-12'
-                  })
-                }}>
-              Outro dia
-            </button>
-          </div>
+                    <section className="w-full gap-1 hover:border-[#141996] pb-1 mt-6 flex ">
 
-          <label htmlFor="description" className="w-full mt-6">
-            <input id="description" {...register('description')} type="text" className="font-medium" placeholder="Descrição"/>
+                        <div className="w-full gap-1 flex justify-between items-center px-6">
+                            <p id="tipo_registro">Foi pago</p>
+                            {
+                                registerType?.tipo_registro === 'receita' ? (
+                                    <Switch {...label} defaultChecked onChange={(e) => {
+                                        setRegisterType({
+                                            ...registerType,
+                                            registro_efetivado: e.target.checked
+                                        })
+                                    }} color="success" />
+                                ) : <Switch {...label} defaultChecked onChange={(e) => {
+                                    setRegisterType({
+                                        ...registerType,
+                                        registro_efetivado: e.target.checked
+                                    })
+                                }} color="error" />
+                            }
+                        </div>
 
-          </label>
+                    </section>
 
-          <Select
-              options={optionsBank}
+                    <div className="w-full gap-1 border-b border-[#444CE6] hover:border-[#141996] pb-1 mt-6 flex ">
+                        <button
+                            className={selectedDay}
+                            onClick={(e) => {
+                                e.preventDefault()
 
-              onChange={(e) => {
-                setRegisterType({
-                  ...registerType,
-                  banco: e.value
-                })
-              }}
+                                const date = new Date()
+                                date.setDate(date.getDate() - 1)
 
-              placeholder="Escolha um banco" className="w-full text-left mt-6"/>
+                                setRegisterType({
+                                    ...registerType,
+                                    quando_ocorreu: date.toISOString()
+                                })
+                            }}
+                        >
+                            Hoje
+                        </button>
+                        <button
+                            className={noSelectedDay}
+                            onClick={(e) => {
+                                e.preventDefault()
 
-          <Select options={optionsTag} placeholder="Escolha uma Tag" styles="border: none; "
-              onChange={(e) => {
-                setRegisterType({
-                  ...registerType,
-                  tag: e.value
-                })
-              }}
-                  className="w-full text-left mt-6 rounded-none "/>
+                                const date = new Date()
+                                date.setDate(date.getDate() - 2)
 
-          <div className="w-full gap-1 pb-6 mt-6 flex justify-center ">
-            <button type={"submit"}
-                className="w-1/2 bg-[rgba(147_197_253/_0.8)] border-[rgba(147_197_253/_0.3)] border-b-2 border-b-blue-700 rounded-none text-slate-950">
-              Salvar
-            </button>
-          </div>
-        </form>
-      </div>
+                                setRegisterType({
+                                    ...registerType,
+                                    quando_ocorreu: date.toISOString()
+                                })
+                            }}>
+                            Ontem
+                        </button>
 
-    </section>
+                        <button
+                            className={noSelectedDay}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                // toggleCalendarModal(e)
+
+                                // precisa chamar uma funcao assincrona puxando um modal com full calendar, para que o user escolha a data que ele quiser
+
+                                setRegisterType({
+                                    ...registerType,
+                                    quando_ocorreu: '2024-04-12'
+                                })
+                            }}>
+                            Outro dia
+                        </button>
+                    </div>
+
+                    <label htmlFor="description" className="w-full mt-6">
+                        <input id="description" {...register('description')} type="text" className="font-medium" placeholder="Descrição"/>
+
+                    </label>
+
+                    <Select
+                        options={optionsBank}
+
+                        onChange={(e) => {
+                            setRegisterType({
+                                ...registerType,
+                                banco: e.value
+                            })
+                        }}
+
+                        placeholder="Escolha um banco" className="w-full text-left mt-6"/>
+
+                    <Select options={optionsTag} placeholder="Escolha uma Tag" styles="border: none; "
+                            onChange={(e) => {
+                                setRegisterType({
+                                    ...registerType,
+                                    tag: e.value
+                                })
+                            }}
+                            className="w-full text-left mt-6 rounded-none "/>
+
+                    <div className="w-full gap-1 pb-6 mt-6 flex justify-center ">
+                        <button type={"submit"}
+                                className="w-1/2 bg-[rgba(147_197_253/_0.8)] border-[rgba(147_197_253/_0.3)] border-b-2 border-b-blue-700 rounded-none text-slate-950">
+                            Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+    </>
   )
 }
 

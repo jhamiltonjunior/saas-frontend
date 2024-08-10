@@ -82,8 +82,6 @@ export default function Home() {
     notificationMessage(setMostrarMensagem, setTimeouts, message);
   }, [message]);
 
-  
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       const menu = menuRef.current;
@@ -346,6 +344,7 @@ export default function Home() {
       {/*{<MenuProfile menuRef={menuProfileRef} />}*/}
       {<ChatSuport menuRef={chatSuportRef} />}
       {/*{<NavBar />}*/}
+
 
       <button onClick={toggleChatSuportModal} className="fixed right-2 bottom-2 z-50 p-3 py-2 text-lg rounded hover:transform">
         <FontAwesomeIcon className="cursor-pointer" icon={faGear} />

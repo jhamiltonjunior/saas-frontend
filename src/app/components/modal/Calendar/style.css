@@ -1,0 +1,73 @@
+:root {
+    --fc-border-color: none;
+}
+
+.fc-right button{
+    text-transform: uppercase;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: box-shadow linear 0.4s;
+    background-color: #2196F3;
+    border-color: #2196F3;
+    margin-top: 10px;
+}
+
+.fc-daygrid-day {
+    border: none;
+    padding: 5px;
+    margin: 2px;
+    background-color: #fff;
+}
+.fc-daygrid-day-frame {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fc-daygrid-day-events {
+    margin-top: 5px;
+}
+
+.fc-daygrid-day-number {
+    font-size: 16px;
+}
+
+.fc-daygrid-day-frame {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    border:none
+}
+
+.fc-daygrid-day-number {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    margin: 0;
+    padding: 0;
+    line-height: 50px;
+}
+
+.fc-daygrid-day-frame:hover {
+    background-color: #a0a0a0;
+}
+
+.fc-daygrid-day-events {
+    position: absolute;
+    top: 60px;
+}
+
+.calendar--open {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
