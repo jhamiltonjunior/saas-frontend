@@ -65,8 +65,6 @@ function ChatSuport({ menuRef, openCalendar }) {
     }, []);
 
     useEffect(() => {
-        console.log(valorDoRegistro)
-
         if (!valorDoRegistro)
             return
         const maskCurrency = (valor, locale = 'pt-BR', currency = 'BRL') => {
@@ -93,8 +91,6 @@ function ChatSuport({ menuRef, openCalendar }) {
     }, [valorDoRegistro, setValue]);
 
   useEffect(() => {
-    console.log(registerType)
-
     let f = ''
     const subscription = watch((value, { name, type }) =>{
         // f = parseFloat(value.value).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
@@ -112,16 +108,11 @@ function ChatSuport({ menuRef, openCalendar }) {
     })
   }, [registerType, setValue, watch])
 
-  const toggleMiniConfigLeft = toggleModal(miniCofingLeftRef, 'mini_config--open');
-  const toggleMiniConfigRight = toggleModal(miniCofingRightRef, 'mini_config--open');
-  const toggleMiniConfigAttachment = toggleModal(miniCofingAttachmentRef, 'mini_config--open');
-  const toggleCalendarModal = toggleModal(calendarRef, 'calendar--open');
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(registerType)
-    // console.log(e)
+    // console.log(registerType)
+    console.log(e)
   }
 
   const noSelectedDay = "darken-on-hover after:bg-[rgba(156_163_175/_0.4)] w-1/3 bg-[rgba(156_163_175/_0.35)] border-[rgba(156_163_175/_0.3)] border-b-2 border-b-gray-700 rounded-none text-slate-950"
@@ -143,8 +134,6 @@ function ChatSuport({ menuRef, openCalendar }) {
 
   return (
     <>
-        {/*<Calendar menuRef={calendarRef} />*/}
-
         <section ref={menuRef} className="chat-suport finance-modal modal overflow-x-hidden border border-solid border-slate-200">
 
             <div className="chat_suport_header sticky top-0 flex justify-between items-center px-6">
