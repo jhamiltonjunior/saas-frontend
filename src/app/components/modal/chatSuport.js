@@ -112,7 +112,8 @@ function ChatSuport({ menuRef, openCalendar }) {
     e.preventDefault();
 
     console.log(registerType)
-      
+
+
   }
 
   const noSelectedDay = "darken-on-hover after:bg-[rgba(156_163_175/_0.4)] w-1/3 bg-[rgba(156_163_175/_0.35)] border-[rgba(156_163_175/_0.3)] border-b-2 border-b-gray-700 rounded-none text-slate-950"
