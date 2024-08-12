@@ -111,8 +111,8 @@ function ChatSuport({ menuRef, openCalendar }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // console.log(registerType)
-    console.log(e)
+    console.log(registerType)
+      
   }
 
   const noSelectedDay = "darken-on-hover after:bg-[rgba(156_163_175/_0.4)] w-1/3 bg-[rgba(156_163_175/_0.35)] border-[rgba(156_163_175/_0.3)] border-b-2 border-b-gray-700 rounded-none text-slate-950"
@@ -163,7 +163,7 @@ function ChatSuport({ menuRef, openCalendar }) {
 
                                 setRegisterType({
                                     ...registerType,
-                                    tipo_registro: 'despesa'
+                                    tipo_registro: 'expense'
                                 })
                             }}
                         >
@@ -186,7 +186,7 @@ function ChatSuport({ menuRef, openCalendar }) {
 
                                 setRegisterType({
                                     ...registerType,
-                                    tipo_registro: 'receita'
+                                    tipo_registro: 'remuneration'
                                 })
                             }}
                         >
@@ -199,7 +199,7 @@ function ChatSuport({ menuRef, openCalendar }) {
                         <div className="w-full gap-1 flex justify-between items-center px-6">
                             <p id="tipo_registro">Foi pago</p>
                             {
-                                registerType?.tipo_registro === 'receita' ? (
+                                registerType?.tipo_registro === 'remuneration' ? (
                                     <Switch {...label} defaultChecked onChange={(e) => {
                                         setRegisterType({
                                             ...registerType,
