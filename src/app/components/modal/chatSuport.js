@@ -30,7 +30,13 @@ function ChatSuport({ menuRef, openCalendar }) {
   const chatRef = useRef(null);
 
   const [registerType, setRegisterType] = useState({
-    registro_efetivado: true
+    registro_efetivado: true,
+    quando_ocorreu: '',
+    tipo_registro: '',
+    value: '',
+    description: '',
+    banco: '',
+    tag: ''
   });
 
   const { register, watch, setValue } = useForm()
@@ -112,6 +118,10 @@ function ChatSuport({ menuRef, openCalendar }) {
     e.preventDefault();
 
     console.log(registerType)
+
+    // fazer validacao dos dados
+    // enviar para o backend com base no tipo_registro
+    // if()
 
 
   }
