@@ -22,14 +22,26 @@ const Message = ({ message, backgroundColor, setMostrarMensagem, id, timeouts })
   };
 
   return <div 
-  className={`mensagem ${isClosing ? 'closing' : ''}`}
-  style={{ backgroundColor: `${backgroundColor}` }}
+  className={`mensagem relative border-b-2 ${isClosing ? 'closing' : ''}`}
+  // style={{ backgroundColor: `${backgroundColor}` }}
+  style={{
+    backgroundColor: '#F6F6F9',
+    color: '#1b1b1b'
+  }}
   onClick={handleClose}
   >
     {message}
     <div className="close">
       <FontAwesomeIcon icon={faXmark} />
     </div>
+
+    <div
+      className={'absolute bottom-0 left-0 loading-time-message'}
+      style={{
+      backgroundColor: backgroundColor,
+      width: '100%',
+      height: '4px',
+    }}></div>
   </div>;
 };
 

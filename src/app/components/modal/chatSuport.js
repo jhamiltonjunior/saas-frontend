@@ -67,7 +67,7 @@ function ChatSuport({ menuRef, openCalendar }) {
     notificationMessage(setMostrarMensagem, setTimeouts, message);
   }, [message]);
 
-  const { register, watch, setValue } = useForm()
+  const { register, watch, setValue, reset } = useForm()
 
   const valorDoRegistro = watch('value');
 
@@ -162,7 +162,7 @@ function ChatSuport({ menuRef, openCalendar }) {
       setMessage({
         text: 'Escolha um valor!',
         id: Date.now(),
-        bg: '#ff0000',
+        bg: '#8a3030',
         show: 1,
       })
 
@@ -180,8 +180,24 @@ function ChatSuport({ menuRef, openCalendar }) {
       return
     }
 
-    if (registerType.tipo_registro === 'expense')
-      await FecthAPI.saveExpense(registerType)
+    if (registerType.tipo_registro === 'expense'){
+
+      const result = await FecthAPI.saveExpense(registerType)
+
+      const message = result.message === 'expense created' ? 'Despesa cadastrada com sucesso' : result.message
+
+      setMessage({
+        text: message,
+        id: Date.now(),
+        bg: '#3faa76',
+        show: 1,
+      })
+
+      if (result.message === 'expense created') {
+        reset()
+      }
+
+    }
 
     // fazer validacao dos dados
     // enviar para o backend com base no tipo_registro

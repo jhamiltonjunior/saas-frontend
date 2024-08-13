@@ -194,19 +194,7 @@ class FetchAPI {
         }),
       });
 
-      console.log({
-        name: data.description,
-        user_id: 1,
-        value: data.value,
-        recurrence_id: 1
-      })
-
-      console.log(response)
-      console.log(await response.json())
-
-      // const data = await response.json();
-
-      if (data.status === 'success') {}
+      return response.json()
 
     } catch (error) {
       console.error('Error on fetchAPI.getAllRemunerationByMonth', error);

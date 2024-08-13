@@ -275,7 +275,6 @@ footer a {
 	max-width: 300px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	margin-bottom: 1rem;
 	position: relative;
 	animation: slideIn 0.3s ease forwards, slideOut 0.3s ease 4.7s forwards;
