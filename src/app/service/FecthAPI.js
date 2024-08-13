@@ -103,7 +103,6 @@ class FetchAPI {
           data: Object.values(receivementsByMonth)
         };
       } else {
-        console.error(data);
         throw new Error('Error on fetchAPI.getAllRemunerationByYear');
       }
     } catch (error) {
@@ -173,14 +172,47 @@ class FetchAPI {
           data: Object.values(expenseByMonth)
         };
       } else {
-        console.error(data);
         throw new Error('Error on fetchAPI.getAllExpenseByYear');
       }
     } catch (error) {
       console.error('Error on fetchAPI.getAllExpenseByYear', error);
     }
   }
-};
+
+  async saveExpense(data) {
+    try {
+      const response = await fetch(`${this.#host}/api/expense/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.description,
+          user_id: 1,
+          value: data.value,
+          recurrence_id: 1
+        }),
+      });
+
+      console.log({
+        name: data.description,
+        user_id: 1,
+        value: data.value,
+        recurrence_id: 1
+      })
+
+      console.log(response)
+      console.log(await response.json())
+
+      // const data = await response.json();
+
+      if (data.status === 'success') {}
+
+    } catch (error) {
+      console.error('Error on fetchAPI.getAllRemunerationByMonth', error);
+    }
+  }
+}
 
 const fetchAPI = new FetchAPI();
 export default fetchAPI;
