@@ -140,13 +140,12 @@ export default function Home() {
         // setHigherReceipt
       } catch (error) {
 
-        // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
-        // setMessage({
-        //   text: 'Erro ao buscar dados.',
-        //   id: Date.now(),
-        //   bg: '#ff0000',
-        //   show: 1,
-        // })
+        setMessage({
+          text: 'Erro ao buscar dados de Receitas e Despesas',
+          id: Date.now(),
+          bg: '#ff0000',
+          show: 1,
+        })
 
         console.error(error);
         setReceive(0);
