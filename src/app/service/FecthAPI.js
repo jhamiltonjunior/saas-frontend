@@ -200,6 +200,31 @@ class FetchAPI {
       console.error('Error on fetchAPI.getAllRemunerationByMonth', error);
     }
   }
+
+  async saveRemuneration(data) {
+    try {
+      const response = await fetch(`${this.#host}/api/remuneration/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.description,
+          value: data.value,
+          user_id: 1,
+          recurrence_id: 1
+        }),
+      });
+
+      return response.json()
+
+    } catch (error) {
+      console.error('Error on fetchAPI.getAllRemunerationByMonth', error);
+      return {
+        message: 'Houve um Error ao salvar os dados!'
+      }
+    }
+  }
 }
 
 const fetchAPI = new FetchAPI();

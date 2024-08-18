@@ -13,7 +13,7 @@ import './style.css'
 
 import { faGoogle, faFacebook, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 
-import {faMoneyCheckDollar, faGraduationCap, faHeartCircleCheck, faGear} from '@fortawesome/free-solid-svg-icons'
+import {faMoneyCheckDollar, faGraduationCap, faCreditCard, faHeartCircleCheck, faGear} from '@fortawesome/free-solid-svg-icons'
 
 import { LineChart } from '../components/charts/line';
 import { BarChart } from '../components/charts/bar';
@@ -142,7 +142,7 @@ export default function Home() {
 
         // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
         setMessage({
-          text: 'Erro ao buscar dados 1',
+          text: 'Erro ao buscar dados.',
           id: Date.now(),
           bg: '#ff0000',
           show: 1,
@@ -183,12 +183,12 @@ export default function Home() {
 
         // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
 
-        setMessage({
-          text: 'Erro ao buscar dados! 2',
-          id: Date.now(),
-          bg: '#ff0000',
-          show: 1,
-        })
+        // setMessage({
+        //   text: 'Erro ao buscar dados! 2',
+        //   id: Date.now(),
+        //   bg: '#ff0000',
+        //   show: 1,
+        // })
 
         console.error(error);
         setComparationYearLabels([])
@@ -212,12 +212,12 @@ export default function Home() {
 
         // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
 
-        setMessage({
-          text: 'Erro ao buscar dados 3',
-          id: Date.now(),
-          bg: '#ff0000',
-          show: 1,
-        })
+        // setMessage({
+        //   text: 'Erro ao buscar dados 3',
+        //   id: Date.now(),
+        //   bg: '#ff0000',
+        //   show: 1,
+        // })
 
         console.error(error);
         // setExpensesYearLabels([])
@@ -275,8 +275,6 @@ export default function Home() {
     
     setBalanceMonth(String(balance).replace('.', ','))
 
-
-
     setExpenseMonth(String(expenseMonth).replace('.', ','))
 
     setComparationYearLabels(Object.keys(expenseData).sort((a, b) => {
@@ -308,28 +306,57 @@ export default function Home() {
     ]
   };
 
+  const janExpense = 2028.01
+  const fevExpense = 500.01
+  const marExpense = 1200.01
+  const abrExpense = 800.01
+  const maioExpense = 1150.00
+  const junExpense = 1400.00
+  const julExpense = 1028.01
+  const agostExpense = 1811.32
+
+
+  const jan = 2100.00
+  const fev = 1350.00
+  const mar = 2600.00
+  const abr = 2800.00
+  const maio = 2400.02
+  const jun = 0
+  const jul = 0
+  const agost = 3038.00
+
+  const saldoJan = jan - janExpense
+  const saldoFev = fev + saldoJan - fevExpense
+  const saldoMarco = mar + saldoFev - marExpense
+  const saldoAbril = abr + saldoMarco - abrExpense
+  const saldoMaio = maio + saldoAbril - maioExpense
+  const saldoJun = jun + saldoMaio - junExpense
+  const saldoJul = jul + saldoJun - julExpense
+  const saldoAgosto = agost + saldoJul - agostExpense
+
   const financial = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+
+    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto'],
     datasets: [
       {
         label: 'Receitas',
         backgroundColor: receitasColor + ', 0.6)',
         borderColor: receitasColor + ', 0.4)',
-        data: [5, 6, 3, 7, 7, 3, 8],
+        data: [jan, fev, mar, abr, maio, jun, jul, agost],
         tension: 0.09
       },
       {
         label: 'Despesas',
         backgroundColor: despesasColor + ', 0)',
         borderColor: despesasColor + ', 0.8)',
-        data: [2, -2, 1, 4, 2, 1, 3],
+        data: [janExpense, fevExpense, marExpense, abrExpense, maioExpense, junExpense, julExpense, agostExpense],
         tension: 0.09
       },
       {
         label: 'Lucro',
         backgroundColor: lucroColor + ', 0.6)',
         borderColor: lucroColor + ',0.8)',
-        data: [3, 4, 2, 3, 5, 2, 5],
+        data: [saldoJan, saldoFev, saldoMarco, saldoAbril, saldoMaio, saldoJun, saldoJul, saldoAgosto],
         tension: 0.09
       }
     ]
@@ -360,7 +387,7 @@ export default function Home() {
             className="minimal-card dashboard-card transition-card receivement-card" 
             icon={{icon: faMoneyCheckDollar, className: 'green-color'}} 
             id="div1" 
-            content={`R$ ${receive}`} />
+            content={`R$ 3.038,00`} />
 
           <Card
             title="Saldo" 
@@ -370,7 +397,7 @@ export default function Home() {
               className: 'primary-color '
             }} 
             id="div1" 
-            content={`R$ ${balanceMonth}`} />
+            content={`R$ 1.254,67`} />
 
           <Card
             title="Despesas do Mês" 
@@ -380,17 +407,17 @@ export default function Home() {
               className: 'tertiary-color'
             }} 
             id="div1" 
-            content={`R$ ${expenseMonth}`} />
+            content={`R$ 780,32`} />
 
           <Card
             title="Faturas" 
             className="minimal-card transition-card dashboard-card student-card" 
             icon={{
-              icon: faGraduationCap,
+              icon: faCreditCard,
               className: 'primary-color '
             }} 
             id="div1" 
-            content="$R 3.529,04" />
+            content="R$ 1.003,01" />
 
         </section>
 
@@ -413,8 +440,8 @@ export default function Home() {
             title="Financeiro"
             component={<LineChart data={financial} />}
             className="medium_card transition-card dashboard-card"
-            icon={faGoogle} id="div1"
-            content="This is Card 1" />
+            icon="" id="div1"
+            content="" />
         </section>
       </main>
 

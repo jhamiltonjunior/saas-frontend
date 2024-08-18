@@ -128,6 +128,7 @@ function ChatSuport({ menuRef, openCalendar }) {
     let f = ''
     const subscription = watch((value, { name, type }) =>{
         // f = parseFloat(value.value).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+      console.log(value.value)
         const onlyDigits = value.value.split('')
             .filter(s => /\d/.test(s))
             .join('')
@@ -145,8 +146,6 @@ function ChatSuport({ menuRef, openCalendar }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(registerType)
-
     if (!registerType.tipo_registro) {
       setMessage({
         text: 'Voce deve escolher entre receita ou despesa!',
@@ -162,7 +161,7 @@ function ChatSuport({ menuRef, openCalendar }) {
       setMessage({
         text: 'Escolha um valor!',
         id: Date.now(),
-        bg: '#8a3030',
+        bg: '#ff0000',
         show: 1,
       })
 
@@ -186,16 +185,47 @@ function ChatSuport({ menuRef, openCalendar }) {
 
       const message = result.message === 'expense created' ? 'Despesa cadastrada com sucesso' : result.message
 
+      if (result.message === 'expense created') {
+        reset()
+        setMessage({
+          id: Date.now(),
+          text: message,
+          bg: '#3faa76',
+          show: 1,
+        })
+        return
+      }
+
       setMessage({
-        text: message,
         id: Date.now(),
-        bg: '#3faa76',
+        text: message,
+        bg: '#aa3f46',
         show: 1,
       })
 
-      if (result.message === 'expense created') {
+    } else if (registerType.tipo_registro === 'remuneration'){
+
+      const result = await FecthAPI.saveRemuneration(registerType)
+
+      const message = result.message === 'remuneration created' ? 'Receita cadastrada com sucesso' : result.message
+
+      if (result.message === 'remuneration created') {
         reset()
+        setMessage({
+          id: Date.now(),
+          text: message,
+          bg: '#3faa76',
+          show: 1,
+        })
+        return
       }
+
+      setMessage({
+        id: Date.now(),
+        text: message,
+        bg: '#aa3f46',
+        show: 1,
+      })
 
     }
 
