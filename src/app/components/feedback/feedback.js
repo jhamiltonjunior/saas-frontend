@@ -15,99 +15,99 @@ function Feedback() {
 
   return (
     <div className="w-full">
-      <div className="inline_feedback cursor-pointer w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between bg-red-100">
         <div>
-          <h1>Maria Silva </h1>
-          <small>14:30 - 2023/05/10 </small>
+          <h1>Pag. Faculdade </h1>
+          <small>08:17 - 02/08/2024 </small>
         </div>
 
         <div>
-          <p>Incrível experiência, mudou minha vida!</p>
-          <small>Nota - 5</small>
-        </div>
-      </div>
-
-      <div className="inline_feedback cursor-pointer w-full flex justify-between">
-        <div>
-          <h1>João Pereira </h1>
-          <small>09:45 - 2023/07/22</small>
-        </div>
-
-        <div>
-          <p>Superou minhas expectativas, recomendo!</p>
-          <small>Nota - 4</small>
+          <p>R$ 310,00</p>
+          <small>Despesa</small>
         </div>
       </div>
 
-      <div className="inline_feedback cursor-pointer w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between bg-red-100">
         <div>
-          <h1>Ana Santos</h1>
-          <small>17:15 - 2023/09/18</small>
+          <h1>Parcela Notebook</h1>
+          <small>13:41 - 05/08/2024 </small>
         </div>
 
         <div>
-          <p>Transformador, nunca vi nada igual!</p>
-          <small>Nota - 3</small>
-        </div>
-      </div>
-
-      <div className="inline_feedback cursor-pointer w-full flex justify-between">
-        <div>
-          <h1>Ricardo Oliveira</h1>
-          <small>11:20 - 2023/11/05</small>
-        </div>
-
-        <div>
-          <p>Surpreendente, vale cada segundo!</p>
-          <small>Nota - 4</small>
+          <p>R$ 250,40</p>
+          <small>Despesa</small>
         </div>
       </div>
 
-      <div className="inline_feedback cursor-pointer w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between bg-red-100">
         <div>
-          <h1>Juliana Lima</h1>
-          <small>20:05 - 2024/01/12</small>
+          <h1>NetFlix</h1>
+          <small>14:30 - 09/08/2024 </small>
         </div>
 
         <div>
-          <p>Inesquecível, quero repetir sempre!</p>
-          <small>Nota - 5</small>
-        </div>
-      </div>
-
-      <div className="inline_feedback cursor-pointer w-full flex justify-between">
-        <div>
-          <h1>Fernando Costa</h1>
-          <small>15:40 - 2023/08/08</small>
-        </div>
-
-        <div>
-          <p>Excelente, me deixou sem palavras!</p>
-          <small>Nota - 4</small>
+          <p>R$ 59,90</p>
+          <small>Despesa</small>
         </div>
       </div>
 
-      <div className="inline_feedback cursor-pointer w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between bg-green-100">
         <div>
-          <h1>Carla Mendes</h1>
-          <small>13:55 - 2023/06/30</small>
+          <h1>Recebimento Salário</h1>
+          <small>16:03 - 10/08/2024 </small>
         </div>
 
         <div>
-          <p>Sensacional, recomendo a todos!</p>
-          <small>Nota - 5</small>
+          <p>R$ 2.100,00</p>
+          <small>Salário</small>
         </div>
       </div>
 
-      <div className="inline_feedback cursor-pointer w-full flex justify-between">
+      <div className="inline_feedback cursor-pointer w-full flex justify-between bg-red-100">
         <div>
-          <h1>Gabriel Santos</h1>
-          <small>17:01 07/01/2024</small>
+          <h1>Pizza</h1>
+          <small>21:07 - 12/08/2024 </small>
         </div>
 
-        <div class="">
-          <p>Incrivelmente bom, surpreendente!</p>
-          <small>Nota - 5</small>
+        <div>
+          <p>R$ 70,00</p>
+          <small>Despesa</small>
+        </div>
+      </div>
+
+      <div className="inline_feedback cursor-pointer w-full flex justify-between bg-green-100">
+        <div>
+          <h1>Pag. Job Freelancer </h1>
+          <small>12:37 - 15/08/2024 </small>
+        </div>
+
+        <div>
+          <p>R$ 938,00</p>
+          <small>Salário</small>
+        </div>
+      </div>
+
+      <div className="inline_feedback cursor-pointer w-full flex justify-between bg-red-100">
+        <div>
+          <h1>Manuten. Bike</h1>
+          <small>14:30 - 16/08/2024 </small>
+        </div>
+
+        <div>
+          <p>R$ 464,00</p>
+          <small>Despesa</small>
+        </div>
+      </div>
+
+      <div className="inline_feedback cursor-pointer w-full flex justify-between bg-amber-100">
+        <div>
+          <h1>Fatura Nubank</h1>
+          <small>20:36 - 17/08/2024</small>
+        </div>
+
+        <div>
+          <p>R$ 657,02</p>
+          <small>Fatura</small>
         </div>
       </div>
 

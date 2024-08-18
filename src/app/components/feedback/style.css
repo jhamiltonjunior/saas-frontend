@@ -35,7 +35,7 @@
   /* border: 1px solid #ccc; */
   border-radius: 5px;
   padding: var(--padding-medium) var(--padding-medium);
-  background-color: #fff;
+  /*background-color: #fff;*/
   box-shadow: var(--box-shadow-primary);
   position: relative;
   overflow: hidden;

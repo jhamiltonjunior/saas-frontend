@@ -333,6 +333,7 @@ export default function Home() {
   const saldoJun = jun + saldoMaio - junExpense
   const saldoJul = jul + saldoJun - julExpense
   const saldoAgosto = agost + saldoJul - agostExpense
+  console.log(saldoAgosto)
 
   const financial = {
 
@@ -397,7 +398,7 @@ export default function Home() {
               className: 'primary-color '
             }} 
             id="div1" 
-            content={`R$ 1.254,67`} />
+            content={`R$ 3.370,65`} />
 
           <Card
             title="Despesas do Mês" 
