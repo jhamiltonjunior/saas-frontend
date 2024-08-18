@@ -1,8 +1,22 @@
 # O projeto
 
-![img.png](img.png)
+# Histórico de Finanças
+## Mostra, sem cálculos, um histórico das suas finanças para o mês atual
+Poderia haver um filtro para mostrar o histórico de outros meses
 ![img_1.png](img_1.png)
-![img_2.png](img_2.png)
+# Taxa de churn (desconsidere esse texto)
+## Esse gráfico mostra em azul o recebimento e em vermelho as despesas
+![img.png](img.png)
+
+# Gráfico que mostra o saldo em relação a despesas
+- Azul: saldo total (somando também o que sobrou no mês anterior)
+- Vermelho: despesa, fatura
+- Verde: Recebimento, salário, etc
+  ![img_2.png](img_2.png)
+
+# Popup para cadastrar despesas e recebimentos
+## O campo banco (Escolha um banco) diz onde foi depositado ou retirado o dinheiro, ex: fatura, salário
+![img_3.png](img_3.png)
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
