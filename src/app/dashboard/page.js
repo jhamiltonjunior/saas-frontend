@@ -141,12 +141,12 @@ export default function Home() {
       } catch (error) {
 
         // preciso falaar paraa o usuario que deu erro, ja tenho componente para isso
-        setMessage({
-          text: 'Erro ao buscar dados.',
-          id: Date.now(),
-          bg: '#ff0000',
-          show: 1,
-        })
+        // setMessage({
+        //   text: 'Erro ao buscar dados.',
+        //   id: Date.now(),
+        //   bg: '#ff0000',
+        //   show: 1,
+        // })
 
         console.error(error);
         setReceive(0);
@@ -433,7 +433,7 @@ export default function Home() {
             />
 
           <ChartCard 
-            title="Taxa de Churn" component={<BarChart data={data} />} className="medium_card dashboard-card transition-card" icon={faGoogle} id="div1" content="" />
+            title="Receitas e Despesas" component={<BarChart data={data} />} className="medium_card dashboard-card transition-card" icon={faGoogle} id="div1" content="" />
         </section>
   
         <section className="container-medium_card container-large_card flex justify-between">
